@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórias Paralelas - Sagile Studios</title>
+    <link rel="icon" href="https://i.ibb.co/GvPc7F82/Favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="page-livro">
+
+<audio id="bg-music" autoplay loop>
+  <source src="musicbg.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
+  music.volume = 0.03;
+  const startMusic = () => music.play().catch(() => {});
+  startMusic();
+  document.addEventListener("click", startMusic);
+});
+</script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  function playClick() {
+    const a = new Audio("button1.mp3");
+    a.volume = 0.3;
+    a.play().catch(() => {});
+  }
+  document.querySelectorAll("a, button, .icon-btn").forEach(el => el.addEventListener("click", playClick));
+});
+</script>
+
+<div class="transition"></div>
+<div class="snow-container"></div>
+
+<header>
+  <div class="logo">
+    <a href="index.html"><img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png"></a>
+  </div>
+  <nav class="menu" id="menu">
+    <div class="highlight"></div>
+    <a href="livro.html">Livros</a>
+    <a href="games.html">Games</a>
+    <a href="comics.html">Comics</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="novidades.html">Novidades</a>
+  </nav>
+  <div class="right-icons">
+    <div class="notification-wrapper">
+      <div class="icon-btn" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+        <span class="badge">3</span>
+      </div>
+      <div class="notif-box" id="notifBox">
+        <p>Nova atualização disponível</p>
+        <p>Capítulo novo lançado</p>
+      </div>
+    </div>
+    <a href="faleconosco.html" class="icon-btn"><i data-lucide="message-circle"></i></a>
+    <a href="registro.html" class="icon-btn">
+      <img id="userAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSI0Ii8+PC9zdmc+" style="width:28px;height:28px;border-radius:50%;object-fit:cover;pointer-events:none;">
+    </a>
+    <a href="download.html" class="icon-btn"><i data-lucide="download"></i></a>
+    <div class="menu-toggle">☰</div>
+  </div>
+</header>
+
+<!-- BANNER -->
+<section class="banner-livros">
+  <div class="banner-livros-content">
+    <h1>📖 Histórias Paralelas</h1>
+    <p>Histórias que expandem o universo Sagile</p>
+  </div>
+</section>
+
+<!-- PESQUISA -->
+<div class="search-area" style="text-align:center; padding: 20px 0 0;">
+  <input type="text" id="search" placeholder="Pesquisar histórias...">
+</div>
+
+<div class="divider"></div>
+
+<div style="text-align:center; padding: 10px 0 5px;">
+  <h1 style="margin:0;">Histórias Paralelas</h1>
+  <p class="subtitulo-catalogo">Conteúdo exclusivo do universo expandido.</p>
+</div>
+
+<!-- CARROSSEL -->
+<div class="hp-carousel" id="hpCarousel">
+  <div class="hp-track" id="hpTrack"></div>
+  <button class="hp-nav hp-prev" id="hpPrev">&#8249;</button>
+  <button class="hp-nav hp-next" id="hpNext">&#8250;</button>
+</div>
+<div class="hp-dots" id="hpDots"></div>
+
+<div id="hpEmpty" style="text-align:center; padding:60px 20px; opacity:0.5; display:none;">
+  <p>Nenhuma história publicada ainda.</p>
+</div>
+
+<!-- BOTÃO DEV (canto inferior direito) -->
+<button class="btn-add-hp" id="btnAddHp" style="display:none;" title="Criar história">+</button>
+
+<!-- MODAL SENHA -->
+<div class="hp-auth-overlay" id="hpAuthOverlay">
+  <div class="hp-auth-box">
+    <h2>🔒 Acesso Dev</h2>
+    <input type="password" id="hpSenha" placeholder="Senha">
+    <p class="hp-auth-error" id="hpAuthError">Senha incorreta.</p>
+    <button onclick="verificarSenha()">Entrar</button>
+  </div>
+</div>
+
+<!-- MODAL CRIAR HISTÓRIA -->
+<div class="hp-modal-overlay" id="hpModalOverlay">
+  <div class="hp-modal">
+    <h2>📖 Criar História</h2>
+    <input type="text" id="hpTitulo" placeholder="Título da história">
+    <input type="text" id="hpCapa" placeholder="URL da capa">
+    <textarea id="hpSinopse" placeholder="Sinopse"></textarea>
+    <select id="hpClassificacao">
+      <option value="">Classificação etária...</option>
+      <option value="Livre">Livre</option>
+      <option value="+10">+10</option>
+      <option value="+12">+12</option>
+      <option value="+14">+14</option>
+      <option value="+16">+16</option>
+      <option value="+18">+18</option>
+    </select>
+    <input type="text" id="hpGenero" placeholder="Gêneros (ex: Ação, Fantasia, Terror)">
+    <div class="hp-modal-btns">
+      <button class="hp-btn-cancel" onclick="fecharModal()">Cancelar</button>
+      <button class="hp-btn-save" onclick="salvarHistoria()">Publicar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// NEVE
+const container = document.querySelector(".snow-container");
+for (let i = 0; i < 50; i++) {
+  const flake = document.createElement("div");
+  flake.classList.add("snowflake");
+  flake.innerHTML = "•";
+  flake.style.left = Math.random() * 100 + "vw";
+  flake.style.animationDuration = (5 + Math.random() * 5) + "s";
+  flake.style.fontSize = (5 + Math.random() * 10) + "px";
+  container.appendChild(flake);
+}
+
+// TRANSIÇÃO
+const transition = document.querySelector(".transition");
+window.addEventListener("load", () => setTimeout(() => transition.classList.remove("active"), 100));
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function(e) {
+    const href = this.getAttribute("href");
+    if (!href || href.startsWith("http")) return;
+    e.preventDefault();
+    transition.classList.add("active");
+    setTimeout(() => window.location.href = href, 500);
+  });
+});
+
+lucide.createIcons();
+
+// NOTIFICAÇÃO
+function toggleNotif() { document.getElementById("notifBox").classList.toggle("active"); }
+document.addEventListener("click", e => {
+  if (!e.target.closest(".notification-wrapper")) document.getElementById("notifBox").classList.remove("active");
+});
+
+// MENU
+document.querySelector(".menu-toggle").onclick = () => document.getElementById("menu").classList.toggle("active");
+
+// HIGHLIGHT
+const menu = document.querySelector("#menu");
+const highlight = menu.querySelector(".highlight");
+const links = menu.querySelectorAll("a");
+function moveHighlight(el) {
+  const r = el.getBoundingClientRect(), mr = menu.getBoundingClientRect();
+  highlight.style.width = r.width + "px";
+  highlight.style.left = (r.left - mr.left) + "px";
+}
+links.forEach(l => l.addEventListener("mouseenter", () => moveHighlight(l)));
+window.addEventListener("load", () => links.forEach(l => { if (l.href.includes("livro.html")) moveHighlight(l); }));
+
+// SCROLL REVEAL
+function revealOnScroll() {
+  document.querySelectorAll(".reveal").forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+  });
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+// DEV AUTH
+const DEV_PASS = "sagiledev2025";
+let isDev = localStorage.getItem("hp_dev") === "1";
+
+function verificarSenha() {
+  if (document.getElementById("hpSenha").value === DEV_PASS) {
+    localStorage.setItem("hp_dev", "1");
+    isDev = true;
+    document.getElementById("hpAuthOverlay").classList.remove("active");
+    document.getElementById("btnAddHp").style.display = "flex";
+    document.getElementById("hpModalOverlay").classList.add("active");
+    renderCarrossel();
+  } else {
+    document.getElementById("hpAuthError").style.display = "block";
+  }
+}
+
+if (isDev) document.getElementById("btnAddHp").style.display = "flex";
+
+// Atalho secreto Ctrl+Shift+D para abrir autenticação dev
+document.addEventListener("keydown", e => {
+  if (e.ctrlKey && e.shiftKey && e.key === "D") {
+    if (!isDev) document.getElementById("hpAuthOverlay").classList.add("active");
+  }
+});
+
+document.getElementById("btnAddHp").addEventListener("click", () => {
+  document.getElementById("hpModalOverlay").classList.add("active");
+});
+
+function fecharModal() { document.getElementById("hpModalOverlay").classList.remove("active"); }
+
+<<<<<<< HEAD
+// DADOS
+let historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
+let currentSlide = 0;
+
+function renderCarrossel(lista) {
+  lista = lista || historias;
+=======
+// API
+const API = "http://localhost:3000";
+let historias = [];
+let currentSlide = 0;
+
+async function carregarHistorias() {
+  try {
+    const res = await fetch(`${API}/historias`);
+    historias = await res.json();
+  } catch(e) {
+    historias = [];
+  }
+  renderCarrossel();
+}
+
+function renderCarrossel(lista) {
+  lista = lista !== undefined ? lista : historias;
+>>>>>>> 758f1dc (debug deploy)
+  const track = document.getElementById("hpTrack");
+  const dots = document.getElementById("hpDots");
+  const empty = document.getElementById("hpEmpty");
+  const carousel = document.getElementById("hpCarousel");
+
+  track.innerHTML = "";
+  dots.innerHTML = "";
+
+  if (lista.length === 0) {
+    empty.style.display = "block";
+    carousel.style.display = "none";
+    return;
+  }
+  empty.style.display = "none";
+  carousel.style.display = "block";
+
+  lista.forEach((h, i) => {
+    const realIdx = historias.indexOf(h);
+    const card = document.createElement("div");
+    card.className = "hp-card";
+    card.innerHTML = `
+      <img src="${h.capa || 'https://via.placeholder.com/160x230?text=Sem+Capa'}" alt="${h.titulo}" style="cursor:pointer;" onclick="abrirHistoria(${realIdx})">
+      <div class="hp-card-info">
+        <h2 style="cursor:pointer;" onclick="abrirHistoria(${realIdx})">${h.titulo}</h2>
+        <div class="hp-rating" style="color:gold;">${h.classificacao ? '🔞 ' + h.classificacao : ''}</div>
+        <div style="opacity:0.7; font-size:13px; margin-bottom:6px;">${h.genero || ''}</div>
+        <p>${h.sinopse}</p>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button onclick="abrirHistoria(${realIdx})" style="padding:10px 22px;border:none;border-radius:8px;background:linear-gradient(135deg,#7a5cff,#5f3bff);color:white;cursor:pointer;font-weight:bold;">📖 Ler</button>
+          ${isDev ? `<button onclick="deletarHistoria(${realIdx})" style="padding:10px 16px;border:none;border-radius:8px;background:#ff4444;color:white;cursor:pointer;">🗑</button>` : ""}
+        </div>
+      </div>
+    `;
+    track.appendChild(card);
+
+    const dot = document.createElement("span");
+    dot.className = "hp-dot" + (i === 0 ? " active" : "");
+    dot.onclick = () => goTo(i);
+    dots.appendChild(dot);
+  });
+
+  goTo(0);
+}
+
+function goTo(n) {
+  currentSlide = n;
+  document.getElementById("hpTrack").style.transform = `translateX(-${n * 100}%)`;
+  document.querySelectorAll(".hp-dot").forEach((d, i) => d.classList.toggle("active", i === n));
+}
+
+document.getElementById("hpPrev").onclick = () => goTo((currentSlide - 1 + historias.length) % historias.length);
+document.getElementById("hpNext").onclick = () => goTo((currentSlide + 1) % historias.length);
+
+function abrirHistoria(idx) {
+  window.location.href = `hp-historia.html?id=${idx}`;
+}
+
+<<<<<<< HEAD
+function salvarHistoria() {
+=======
+async function salvarHistoria() {
+>>>>>>> 758f1dc (debug deploy)
+  const titulo = document.getElementById("hpTitulo").value.trim();
+  const capa = document.getElementById("hpCapa").value.trim();
+  const sinopse = document.getElementById("hpSinopse").value.trim();
+  const classificacao = document.getElementById("hpClassificacao").value;
+  const genero = document.getElementById("hpGenero").value.trim();
+
+  if (!titulo || !sinopse) return alert("Preencha pelo menos o título e a sinopse.");
+
+<<<<<<< HEAD
+  historias.push({ titulo, capa, sinopse, classificacao, genero, capitulos: [] });
+  localStorage.setItem("hp_historias", JSON.stringify(historias));
+=======
+  await fetch(`${API}/historias`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ titulo, capa, sinopse, classificacao, genero })
+  });
+>>>>>>> 758f1dc (debug deploy)
+
+  ["hpTitulo","hpCapa","hpSinopse","hpGenero"].forEach(id => document.getElementById(id).value = "");
+  document.getElementById("hpClassificacao").value = "";
+
+  fecharModal();
+<<<<<<< HEAD
+  renderCarrossel();
+}
+
+function deletarHistoria(i) {
+  if (!confirm("Remover esta história?")) return;
+  historias.splice(i, 1);
+  localStorage.setItem("hp_historias", JSON.stringify(historias));
+  renderCarrossel();
+}
+
+renderCarrossel();
+=======
+  await carregarHistorias();
+}
+
+async function deletarHistoria(i) {
+  if (!confirm("Remover esta história?")) return;
+  await fetch(`${API}/historias/${i}`, { method: "DELETE" });
+  await carregarHistorias();
+}
+
+carregarHistorias();
+>>>>>>> 758f1dc (debug deploy)
+
+// PESQUISA
+document.getElementById("search").addEventListener("input", function() {
+  const q = this.value.toLowerCase();
+  renderCarrossel(historias.filter(h => h.titulo.toLowerCase().includes(q) || h.sinopse.toLowerCase().includes(q)));
+});
+</script>
+
+<script src="updater-ui.js"></script>
+</body>
+</html>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
+      <p>Sagile Studios © 2026</p>
+    </div>
+    <div class="footer-links">
+      <a href="livro.html">Livros</a>
+      <a href="games.html">Games</a>
+      <a href="comics.html">Comics</a>
+      <a href="sobre.html">Sobre</a>
+    </div>
+    <div class="footer-social">
+      <p>Redes</p>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Todos os direitos reservados.</p>
+  </div>
+</footer>
