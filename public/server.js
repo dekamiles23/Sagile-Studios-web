@@ -1,4 +1,15 @@
 const express = require("express");
+const path = require("path");
+
+const app = express();
+
+// frontend
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 const cors = require("cors");
 const { Pool } = require("pg");
 const multer = require("multer");
@@ -47,6 +58,10 @@ const upload = multer({ storage });
 
 // ===== SERVIR FRONTEND =====
 app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 // ===== ROTAS API =====
 app.get("/api/stories", async (req, res) => {
