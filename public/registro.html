@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Conta - Sagile Studios</title>
+
+    <link rel="icon" href="https://i.ibb.co/GvPc7F82/Favicon.png">
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body class="page-registro">
+
+<audio id="bg-music" autoplay loop>
+  <source src="musicbg.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="click-sound" src="button1.mp3"></audio>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
+
+  music.volume = 0.03;
+
+  const startMusic = () => {
+    music.play().catch(err => {
+          });
+  };
+
+  startMusic();
+
+  document.addEventListener("click", () => {
+    startMusic();
+  });
+});
+</script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  function playClick() {
+    const audio = new Audio("button1.mp3");
+    audio.volume = 0.3;
+    audio.play().catch(() => {});
+  }
+
+  document.querySelectorAll("a, button, .icon-btn").forEach(el => {
+    el.addEventListener("click", playClick);
+  });
+
+});
+</script>
+
+<!-- TRANSIÇÃO -->
+<div class="transition"></div>
+
+<!-- NEVE -->
+<div class="snow-container"></div>
+
+<!-- HEADER PADRÃO -->
+<header>
+
+    <div class="logo">
+        <a href="index.html">
+            <img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
+        </a>
+    </div>
+
+    <nav class="menu" id="menu">
+        <div class="highlight"></div>
+        <a href="livro.html">Livros</a>
+        <a href="games.html">Games</a>
+        <a href="comics.html">Comics</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="novidades.html">Novidades</a>
+    </nav>
+
+    <div class="right-icons">
+
+        <div class="notification-wrapper">
+            <div class="icon-btn" onclick="toggleNotif()">
+                <i data-lucide="bell"></i>
+                <span class="badge">3</span>
+            </div>
+            <div class="notif-box" id="notifBox">
+                <p>Nova atualização disponível</p>
+                <p>Capítulo novo lançado</p>
+            </div>
+        </div>
+
+        <a href="faleconosco.html" class="icon-btn">
+            <i data-lucide="message-circle"></i>
+        </a>
+
+        <a href="registro.html" class="icon-btn">
+            <img id="userAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSI0Ii8+PC9zdmc+" style="width:28px;height:28px;border-radius:50%;object-fit:cover;pointer-events:none;">
+        </a>
+
+        <a href="download.html" class="icon-btn">
+            <i data-lucide="download"></i>
+        </a>
+
+<<<<<<< HEAD
+=======
+    <!-- UPDATE -->
+    <a href="#" class="icon-btn" id="update-btn" style="display:none;">
+        <i data-lucide="arrow-down-circle"></i>
+    </a>
+
+>>>>>>> 758f1dc (debug deploy)
+        <div class="menu-toggle">☰</div>
+
+    </div>
+
+</header>
+
+
+
+<!-- PERFIL -->
+<section class="profile-page">
+
+    <div class="profile-card">
+
+        <div class="profile-banner"></div>
+
+        <div class="profile-avatar-wrap">
+            <img id="avatarImg" src="https://i.ibb.co/GvPc7F82/Favicon.png" alt="Avatar">
+            <label class="avatar-edit" title="Trocar foto">
+                <i data-lucide="camera"></i>
+                <input type="file" id="avatarInput" accept="image/*" hidden>
+            </label>
+        </div>
+
+        <div class="profile-status">
+            <span class="status-dot"></span>
+            <span id="statusLabel">Online</span>
+        </div>
+
+        <div class="profile-nick-wrap">
+            <h1 id="nickDisplay" class="profile-nick">Usuário</h1>
+            <button class="edit-inline" onclick="editField('nick')" title="Editar nick"><i data-lucide="pencil"></i></button>
+        </div>
+        <input id="nickInput" class="profile-input hidden" placeholder="Seu nick" maxlength="30">
+
+        <div class="profile-bio-wrap">
+            <p id="bioDisplay" class="profile-bio">Minha frase aqui...</p>
+            <button class="edit-inline" onclick="editField('bio')" title="Editar bio"><i data-lucide="pencil"></i></button>
+        </div>
+        <input id="bioInput" class="profile-input hidden" placeholder="Sua bio" maxlength="80">
+
+        <div class="profile-socials">
+            <div class="social-item">
+                <span class="social-icon">💬</span>
+                <a id="link-discord" href="#" target="_blank">Discord</a>
+                <button class="edit-inline" onclick="editSocial('discord')"><i data-lucide="pencil"></i></button>
+            </div>
+            <div class="social-item">
+                <span class="social-icon">🐙</span>
+                <a id="link-github" href="#" target="_blank">GitHub</a>
+                <button class="edit-inline" onclick="editSocial('github')"><i data-lucide="pencil"></i></button>
+            </div>
+            <div class="social-item">
+                <span class="social-icon">▶️</span>
+                <a id="link-youtube" href="#" target="_blank">YouTube</a>
+                <button class="edit-inline" onclick="editSocial('youtube')"><i data-lucide="pencil"></i></button>
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <div class="stat-box">
+                <span id="statGames">0</span>
+                <label>Jogos</label>
+            </div>
+            <div class="stat-box">
+                <span id="statFav">—</span>
+                <label>Favorito</label>
+            </div>
+            <div class="stat-box">
+                <span id="statHours">0h</span>
+                <label>Jogado</label>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <button class="btn-save" onclick="saveProfile()">💾 Salvar perfil</button>
+            <button class="btn-reset" onclick="resetProfile()">🔄 Redefinir</button>
+        </div>
+
+    </div>
+
+</section>
+
+<div class="toast" id="toast"></div>
+
+<style>
+.profile-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 120px 20px 60px;
+}
+.profile-card {
+    width: 100%;
+    max-width: 480px;
+    background: rgba(10,10,25,0.85);
+    border: 1px solid rgba(122,92,255,0.25);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 40px rgba(122,92,255,0.15);
+    animation: fadeIn 0.5s ease;
+}
+.profile-banner {
+    height: 100px;
+    background: linear-gradient(135deg, #1a0a3a, #0a1a3a, #7a5cff33);
+}
+.profile-avatar-wrap {
+    position: relative;
+    width: 90px;
+    margin: -45px auto 0;
+}
+.profile-avatar-wrap img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #7a5cff;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 0 20px rgba(122,92,255,0.5);
+    transition: 0.3s;
+}
+.profile-avatar-wrap img:hover { box-shadow: 0 0 30px rgba(122,92,255,0.8); }
+.avatar-edit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #7a5cff;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.avatar-edit:hover { background: #5f3bff; }
+.avatar-edit i { width: 13px; height: 13px; color: white; }
+.profile-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00e676;
+    box-shadow: 0 0 6px #00e676;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+.profile-nick-wrap,
+.profile-bio-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 20px;
+    margin-top: 8px;
+}
+.profile-nick {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0;
+}
+.profile-bio {
+    font-size: 14px;
+    opacity: 0.65;
+    margin: 0;
+    text-align: center;
+}
+.edit-inline {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+    padding: 2px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+.edit-inline:hover { color: #7a5cff; }
+.edit-inline i { width: 14px; height: 14px; }
+.profile-input {
+    display: block;
+    margin: 6px auto 0;
+    width: calc(100% - 60px);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(122,92,255,0.4);
+    background: rgba(255,255,255,0.06);
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+    transition: 0.3s;
+}
+.profile-input:focus {
+    border-color: #7a5cff;
+    box-shadow: 0 0 8px rgba(122,92,255,0.4);
+}
+.profile-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 30px 0;
+}
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 8px 14px;
+    transition: 0.3s;
+}
+.social-item:hover {
+    background: rgba(122,92,255,0.1);
+    box-shadow: 0 0 10px rgba(122,92,255,0.2);
+}
+.social-item a {
+    flex: 1;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.social-item a:hover { color: #7a5cff; }
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 30px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.stat-box span {
+    font-size: 22px;
+    font-weight: bold;
+    color: #7a5cff;
+}
+.stat-box label {
+    font-size: 11px;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.profile-actions {
+    display: flex;
+    gap: 10px;
+    padding: 0 30px 25px;
+    justify-content: center;
+}
+.btn-save, .btn-reset {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.btn-save {
+    background: linear-gradient(135deg, #7a5cff, #5f3bff);
+    color: white;
+    flex: 1;
+}
+.btn-save:hover {
+    box-shadow: 0 0 15px rgba(122,92,255,0.5);
+    transform: translateY(-2px);
+}
+.btn-reset {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-reset:hover {
+    background: rgba(255,50,50,0.15);
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(122,92,255,0.9);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    opacity: 0;
+    transition: 0.4s;
+    z-index: 9999;
+    pointer-events: none;
+}
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+</style>
+
+<!-- SCRIPT -->
+<script>
+
+// ❄️ NEVE
+const container = document.querySelector(".snow-container");
+
+for (let i = 0; i < 50; i++) {
+    const flake = document.createElement("div");
+    flake.classList.add("snowflake");
+    flake.innerHTML = "•";
+
+    flake.style.left = Math.random() * 100 + "vw";
+    flake.style.animationDuration = (5 + Math.random() * 5) + "s";
+    flake.style.fontSize = (5 + Math.random() * 10) + "px";
+
+    container.appendChild(flake);
+}
+
+// 🎬 TRANSIÇÃO
+const transition = document.querySelector(".transition");
+
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        transition.classList.remove("active");
+    }, 100);
+});
+
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+
+        const href = this.getAttribute("href");
+
+        if (!href || href.startsWith("http")) return;
+
+        e.preventDefault();
+
+        transition.classList.add("active");
+
+        setTimeout(() => {
+            window.location.href = href;
+        }, 500);
+    });
+});
+
+// 📱 MENU
+document.querySelector(".menu-toggle").onclick = () => {
+    document.getElementById("menu").classList.toggle("active");
+};
+
+// 🔵 HIGHLIGHT
+const menu = document.querySelector("#menu");
+const highlight = menu.querySelector(".highlight");
+const links = menu.querySelectorAll("a");
+
+function moveHighlight(el) {
+    const rect = el.getBoundingClientRect();
+    const menuRect = menu.getBoundingClientRect();
+
+    highlight.style.width = rect.width + "px";
+    highlight.style.left = (rect.left - menuRect.left) + "px";
+}
+
+links.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+        moveHighlight(link);
+    });
+});
+
+lucide.createIcons();
+
+// NOTIFICAÇÃO
+function toggleNotif() {
+    const box = document.getElementById("notifBox");
+    box.classList.toggle("active");
+}
+
+// fechar clicando fora
+document.addEventListener("click", function(e) {
+    if (!e.target.closest(".notification-wrapper")) {
+        document.getElementById("notifBox").classList.remove("active");
+    }
+});
+
+// ===== PERFIL =====
+
+const DEFAULTS = { nick: 'Usuário', bio: 'Minha frase aqui...', avatar: '', discord: '#', github: '#', youtube: '#' };
+
+function loadProfile() {
+    const d = JSON.parse(localStorage.getItem('sgProfile') || '{}');
+    const p = Object.assign({}, DEFAULTS, d);
+
+    document.getElementById('nickDisplay').textContent = p.nick;
+    document.getElementById('bioDisplay').textContent = p.bio;
+
+    if (p.avatar) document.getElementById('avatarImg').src = p.avatar;
+
+    ['discord','github','youtube'].forEach(s => {
+        const el = document.getElementById('link-' + s);
+        el.href = p[s];
+        el.textContent = p[s] === '#' ? s.charAt(0).toUpperCase() + s.slice(1) : p[s];
+    });
+}
+
+function saveProfile() {
+    const d = JSON.parse(localStorage.getItem('sgProfile') || '{}');
+    localStorage.setItem('sgProfile', JSON.stringify(d));
+    showToast('✅ Perfil salvo!');
+}
+
+function resetProfile() {
+    if (!confirm('Redefinir perfil?')) return;
+    localStorage.removeItem('sgProfile');
+    loadProfile();
+    showToast('🔄 Perfil redefinido');
+}
+
+function editField(field) {
+    const display = document.getElementById(field + 'Display');
+    const input   = document.getElementById(field + 'Input');
+    const isHidden = input.classList.contains('hidden');
+
+    if (isHidden) {
+        input.value = display.textContent;
+        input.classList.remove('hidden');
+        input.focus();
+        input.onblur = () => {
+            const val = input.value.trim() || DEFAULTS[field];
+            display.textContent = val;
+            input.classList.add('hidden');
+            const d = JSON.parse(localStorage.getItem('sgProfile') || '{}');
+            d[field] = val;
+            localStorage.setItem('sgProfile', JSON.stringify(d));
+        };
+        input.onkeydown = e => { if (e.key === 'Enter') input.blur(); };
+    }
+}
+
+function editSocial(name) {
+    const link = document.getElementById('link-' + name);
+    const url  = prompt('URL do ' + name + ':', link.href === '#' ? '' : link.href);
+    if (url === null) return;
+    const val = url.trim() || '#';
+    link.href = val;
+    link.textContent = val === '#' ? name.charAt(0).toUpperCase() + name.slice(1) : val;
+    const d = JSON.parse(localStorage.getItem('sgProfile') || '{}');
+    d[name] = val;
+    localStorage.setItem('sgProfile', JSON.stringify(d));
+}
+
+document.getElementById('avatarInput').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        document.getElementById('avatarImg').src = e.target.result;
+        const d = JSON.parse(localStorage.getItem('sgProfile') || '{}');
+        d.avatar = e.target.result;
+        localStorage.setItem('sgProfile', JSON.stringify(d));
+        // atualiza o ícone do header na mesma página
+        if (typeof applyUserAvatar === 'function') applyUserAvatar();
+    };
+    reader.readAsDataURL(file);
+});
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+loadProfile();
+
+</script>
+
+<!-- RODAPÉ -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-logo">
+            <img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
+            <p>Sagile Studios © 2026</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="livro.html">Livros</a>
+            <a href="games.html">Games</a>
+            <a href="comics.html">Comics</a>
+            <a href="sobre.html">Sobre</a>
+        </div>
+
+        <div class="footer-social">
+            <p>Redes</p>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="updater-ui.js"></script>
+</body>
+</html>
+
