@@ -1,4 +1,15 @@
 const express = require("express");
+const path = require("path");
+
+const app = express();
+
+// frontend
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
@@ -77,6 +88,10 @@ const upload = multer({
 
 // Serve imagens estaticamente em /images
 app.use("/images", express.static(UPLOADS_DIR));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 // POST /upload — recebe imagens via multipart/form-data
 // Campos: comicName, chapterNumber, images (arquivo(s))
@@ -181,4 +196,5 @@ app.use((err, req, res, next) => {
   res.status(400).json({ error: err.message });
 });
 
-app.listen(PORT, () => console.log("Sagile backend rodando"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
