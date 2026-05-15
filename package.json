@@ -1,51 +1,28 @@
 {
-  "name": "@sagile/studios",
-  "version": "1.0.12",
-  "main": "main.js",
+  "name": "sagile-web",
+  "version": "1.0.0",
+  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dist": "electron-builder"
-  },
-  "devDependencies": {
-    "electron": "latest",
-    "electron-builder": "latest",
-    "electron-reload": "^2.0.0-alpha.1"
+    "start": "node server.js"
   },
   "dependencies": {
-    "cors": "^2.8.6",
-    "electron-updater": "^6.8.3",
     "express": "^5.2.1",
-    "multer": "^2.1.1",
-    "pg": "^8.20.0"
+    "cors": "^2.8.6",
+    "pg": "^8.20.0",
+    "multer": "^2.1.1"
   },
-  "build": {
-    "appId": "com.sagile.studios",
-    "productName": "Sagile Studios",
-    "artifactName": "Sagile Studios.exe",
-    "win": {
-      "target": "nsis",
-      "icon": "icon.ico"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "installerIcon": "icon.ico",
-      "artifactName": "Sagile Studios Setup.exe"
-    },
-    "compression": "maximum",
-    "publish": {
-      "provider": "github",
-      "owner": "dekamiles23",
-      "repo": "Sagile-Studios"
-    },
-    "files": [
-      "**/*"
-    ],
-    "extraResources": [
-      {
-        "from": "assets",
-        "to": "assets"
-      }
-    ]
-  }
+  "description": "��#\u0000 \u0000S\u0000a\u0000g\u0000i\u0000l\u0000e\u0000-\u0000S\u0000t\u0000u\u0000d\u0000i\u0000o\u0000s\u0000-\u0000w\u0000e\u0000b\u0000\r\u0000 \u0000#\u0000 \u0000S\u0000a\u0000g\u0000i\u0000l\u0000e\u0000-\u0000S\u0000t\u0000u\u0000d\u0000i\u0000o\u0000s\u0000-\u0000w\u0000e\u0000b\u0000\r\u0000 \u0000",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dekamiles23/Sagile-Studios-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dekamiles23/Sagile-Studios-web/issues"
+  },
+  "homepage": "https://github.com/dekamiles23/Sagile-Studios-web#readme"
 }
