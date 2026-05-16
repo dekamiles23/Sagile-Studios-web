@@ -20,23 +20,21 @@ const pool = new Pool({
 pool.query(`
   CREATE TABLE IF NOT EXISTS stories (
     id SERIAL PRIMARY KEY,
-    title TEXT,
-    content TEXT,
-    capa TEXT,
-    classificacao TEXT,
-    genero TEXT,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    capa TEXT DEFAULT '',
+    classificacao TEXT DEFAULT '',
+    genero TEXT DEFAULT '',
     capitulos TEXT DEFAULT '[]',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
-`).then(() => {
-  return pool.query(`
-    ALTER TABLE stories
-      ADD COLUMN IF NOT EXISTS capa TEXT,
-      ADD COLUMN IF NOT EXISTS classificacao TEXT,
-      ADD COLUMN IF NOT EXISTS genero TEXT,
-      ADD COLUMN IF NOT EXISTS capitulos TEXT DEFAULT '[]'
-  `);
-}).catch(console.error);
+`).then(() => pool.query(`
+  ALTER TABLE stories
+    ADD COLUMN IF NOT EXISTS capa TEXT DEFAULT '',
+    ADD COLUMN IF NOT EXISTS classificacao TEXT DEFAULT '',
+    ADD COLUMN IF NOT EXISTS genero TEXT DEFAULT '',
+    ADD COLUMN IF NOT EXISTS capitulos TEXT DEFAULT '[]'
+`)).then(() => console.log("Tabela pronta")).catch(console.error);
 
 // ===== UPLOADS =====
 const UPLOADS_DIR = path.join(__dirname, "uploads");
@@ -53,6 +51,17 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // ===== ROTAS API (antes do static) =====
+
+// Diagnóstico
+app.get("/health", async (req, res) => {
+  try {
+    await pool.query("SELECT 1");
+    res.json({ db: "ok" });
+  } catch(e) {
+    res.status(500).json({ db: "erro", msg: e.message });
+  }
+});
+
 app.get(["/api/stories", "/historias"], async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM stories ORDER BY id ASC");
@@ -72,17 +81,20 @@ app.get(["/api/stories", "/historias"], async (req, res) => {
 app.post(["/api/stories", "/historias"], async (req, res) => {
   const title = req.body.title || req.body.titulo;
   const content = req.body.content || req.body.sinopse;
-  const { capa, classificacao, genero } = req.body;
+  const capa = req.body.capa || "";
+  const classificacao = req.body.classificacao || "";
+  const genero = req.body.genero || "";
   if (!title || !content) return res.status(400).json({ error: "titulo e sinopse obrigatórios" });
   try {
     const result = await pool.query(
       "INSERT INTO stories (title, content, capa, classificacao, genero, capitulos) VALUES ($1,$2,$3,$4,$5,'[]') RETURNING *",
-      [title, content, capa || "", classificacao || "", genero || ""]
+      [title, content, capa, classificacao, genero]
     );
-    res.json(result.rows[0]);
+    const row = result.rows[0];
+    res.json({ ...row, titulo: row.title, sinopse: row.content, capitulos: [] });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Erro ao salvar história" });
+    console.error("ERRO POST /historias:", err.message);
+    res.status(500).json({ error: err.message });
   }
 });
 
