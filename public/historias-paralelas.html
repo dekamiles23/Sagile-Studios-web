@@ -64,7 +64,7 @@ window.addEventListener("DOMContentLoaded", () => {
     </div>
     <a href="faleconosco.html" class="icon-btn"><i data-lucide="message-circle"></i></a>
     <a href="registro.html" class="icon-btn">
-      <img id="userAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSI0Ii8+PC9zdmc+" style="width:28px;height:28px;border-radius:50%;object-fit:cover;pointer-events:none;">
+      <img id="userAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDQgMCAwIDAtNCA0djIiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiLz48L3N2Zz4=" style="width:28px;height:28px;border-radius:50%;object-fit:cover;pointer-events:none;">
     </a>
     <a href="download.html" class="icon-btn"><i data-lucide="download"></i></a>
     <div class="menu-toggle">☰</div>
@@ -103,11 +103,11 @@ window.addEventListener("DOMContentLoaded", () => {
   <p>Nenhuma história publicada ainda.</p>
 </div>
 
-<!-- BOTÃO DEV (canto inferior direito) -->
+<!-- BOTÃO DEV -->
 <button class="btn-add-hp" id="btnAddHp" style="display:none;" title="Criar história">+</button>
 
 <!-- MODAL SENHA -->
-<div class="hp-auth-overlay" id="hpAuthOverlay">
+<div class="hp-auth-overlay" id="hpAuthOverlay" style="display:none;">
   <div class="hp-auth-box">
     <h2>🔒 Acesso Dev</h2>
     <input type="password" id="hpSenha" placeholder="Senha">
@@ -206,7 +206,7 @@ function verificarSenha() {
   if (document.getElementById("hpSenha").value === DEV_PASS) {
     localStorage.setItem("hp_dev", "1");
     isDev = true;
-    document.getElementById("hpAuthOverlay").classList.remove("active");
+    document.getElementById("hpAuthOverlay").style.display = "none";
     document.getElementById("btnAddHp").style.display = "flex";
     document.getElementById("hpModalOverlay").classList.add("active");
     renderCarrossel();
@@ -217,10 +217,11 @@ function verificarSenha() {
 
 if (isDev) document.getElementById("btnAddHp").style.display = "flex";
 
-// Atalho secreto Ctrl+Shift+D para abrir autenticação dev
+// Atalho Ctrl+Shift+A para abrir autenticação dev
 document.addEventListener("keydown", e => {
-  if (e.ctrlKey && e.shiftKey && e.key === "D") {
-    if (!isDev) document.getElementById("hpAuthOverlay").classList.add("active");
+  if (e.ctrlKey && e.shiftKey && e.key === "A") {
+    e.preventDefault();
+    if (!isDev) document.getElementById("hpAuthOverlay").style.display = "flex";
   }
 });
 
@@ -230,16 +231,8 @@ document.getElementById("btnAddHp").addEventListener("click", () => {
 
 function fecharModal() { document.getElementById("hpModalOverlay").classList.remove("active"); }
 
-<<<<<<< HEAD
-// DADOS
-let historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
-let currentSlide = 0;
-
-function renderCarrossel(lista) {
-  lista = lista || historias;
-=======
 // API
-const API = "http://localhost:3000";
+const API = "https://sagile-studios.onrender.com";
 let historias = [];
 let currentSlide = 0;
 
@@ -255,7 +248,6 @@ async function carregarHistorias() {
 
 function renderCarrossel(lista) {
   lista = lista !== undefined ? lista : historias;
->>>>>>> 758f1dc (debug deploy)
   const track = document.getElementById("hpTrack");
   const dots = document.getElementById("hpDots");
   const empty = document.getElementById("hpEmpty");
@@ -313,11 +305,7 @@ function abrirHistoria(idx) {
   window.location.href = `hp-historia.html?id=${idx}`;
 }
 
-<<<<<<< HEAD
-function salvarHistoria() {
-=======
 async function salvarHistoria() {
->>>>>>> 758f1dc (debug deploy)
   const titulo = document.getElementById("hpTitulo").value.trim();
   const capa = document.getElementById("hpCapa").value.trim();
   const sinopse = document.getElementById("hpSinopse").value.trim();
@@ -326,34 +314,16 @@ async function salvarHistoria() {
 
   if (!titulo || !sinopse) return alert("Preencha pelo menos o título e a sinopse.");
 
-<<<<<<< HEAD
-  historias.push({ titulo, capa, sinopse, classificacao, genero, capitulos: [] });
-  localStorage.setItem("hp_historias", JSON.stringify(historias));
-=======
   await fetch(`${API}/historias`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ titulo, capa, sinopse, classificacao, genero })
   });
->>>>>>> 758f1dc (debug deploy)
 
   ["hpTitulo","hpCapa","hpSinopse","hpGenero"].forEach(id => document.getElementById(id).value = "");
   document.getElementById("hpClassificacao").value = "";
 
   fecharModal();
-<<<<<<< HEAD
-  renderCarrossel();
-}
-
-function deletarHistoria(i) {
-  if (!confirm("Remover esta história?")) return;
-  historias.splice(i, 1);
-  localStorage.setItem("hp_historias", JSON.stringify(historias));
-  renderCarrossel();
-}
-
-renderCarrossel();
-=======
   await carregarHistorias();
 }
 
@@ -364,7 +334,6 @@ async function deletarHistoria(i) {
 }
 
 carregarHistorias();
->>>>>>> 758f1dc (debug deploy)
 
 // PESQUISA
 document.getElementById("search").addEventListener("input", function() {
