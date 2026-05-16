@@ -297,8 +297,8 @@ document.getElementById("btnAddCap").addEventListener("click", () => {
 });
 function fecharCapModal() { document.getElementById("capModalOverlay").style.display = "none"; }
 
-// API + localStorage fallback
-const API = "https://sagile-studios.onrender.com";
+// API - rotas relativas (funciona no Railway, Render, qualquer servidor)
+const API = "";
 const params = new URLSearchParams(window.location.search);
 const storyId = parseInt(params.get("id")); // id real do banco
 const idx = parseInt(params.get("idx") || "0"); // índice para fallback local
