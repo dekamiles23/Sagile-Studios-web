@@ -117,7 +117,7 @@ window.addEventListener("DOMContentLoaded", () => {
 </div>
 
 <!-- MODAL CRIAR HISTÓRIA -->
-<div class="hp-modal-overlay" id="hpModalOverlay">
+<div class="hp-modal-overlay" id="hpModalOverlay" style="display:none;">
   <div class="hp-modal">
     <h2>📖 Criar História</h2>
     <input type="text" id="hpTitulo" placeholder="Título da história">
@@ -166,7 +166,7 @@ document.querySelectorAll("a").forEach(link => {
   });
 });
 
-lucide.createIcons();
+window.addEventListener("DOMContentLoaded", () => lucide.createIcons());
 
 // NOTIFICAÇÃO
 function toggleNotif() { document.getElementById("notifBox").classList.toggle("active"); }
@@ -208,7 +208,7 @@ function verificarSenha() {
     isDev = true;
     document.getElementById("hpAuthOverlay").style.display = "none";
     document.getElementById("btnAddHp").style.display = "flex";
-    document.getElementById("hpModalOverlay").classList.add("active");
+    document.getElementById("hpModalOverlay").style.display = "flex";
     renderCarrossel();
   } else {
     document.getElementById("hpAuthError").style.display = "block";
@@ -226,10 +226,10 @@ document.addEventListener("keydown", e => {
 });
 
 document.getElementById("btnAddHp").addEventListener("click", () => {
-  document.getElementById("hpModalOverlay").classList.add("active");
+  document.getElementById("hpModalOverlay").style.display = "flex";
 });
 
-function fecharModal() { document.getElementById("hpModalOverlay").classList.remove("active"); }
+function fecharModal() { document.getElementById("hpModalOverlay").style.display = "none"; }
 
 // API
 const API = "https://sagile-studios.onrender.com";
