@@ -11,13 +11,6 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// ===== FRONTEND =====
-app.use(express.static(path.join(__dirname, "public")));
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
 // ===== BANCO DE DADOS =====
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -36,7 +29,6 @@ pool.query(`
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
 `).then(() => {
-  // adiciona colunas novas se a tabela já existia sem elas
   return pool.query(`
     ALTER TABLE stories
       ADD COLUMN IF NOT EXISTS capa TEXT,
@@ -60,8 +52,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-app.use("/uploads", express.static(UPLOADS_DIR));
-
+// ===== ROTAS API (antes do static) =====
 app.get(["/api/stories", "/historias"], async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM stories ORDER BY id ASC");
@@ -106,7 +97,7 @@ app.delete(["/historias/:id", "/api/stories/:id"], async (req, res) => {
   }
 });
 
-app.post(["/historias/:id/capitulos"], async (req, res) => {
+app.post("/historias/:id/capitulos", async (req, res) => {
   const id = parseInt(req.params.id);
   const { titulo, texto } = req.body;
   if (!titulo || !texto) return res.status(400).json({ error: "titulo e texto obrigatórios" });
@@ -142,6 +133,15 @@ app.delete("/historias/:id/capitulos/:capId", async (req, res) => {
 app.post("/api/upload", upload.array("images"), (req, res) => {
   const urls = req.files.map(f => `${req.protocol}://${req.get("host")}/uploads/${f.filename}`);
   res.json({ uploaded: urls });
+});
+
+app.use("/uploads", express.static(UPLOADS_DIR));
+
+// ===== FRONTEND (depois das rotas API) =====
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // ===== ERRO GLOBAL =====
