@@ -62,6 +62,19 @@ app.get("/health", async (req, res) => {
   }
 });
 
+// Teste direto do INSERT
+app.get("/test-insert", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "INSERT INTO stories (title, content, capa, classificacao, genero, capitulos) VALUES ($1,$2,$3,$4,$5,'[]') RETURNING *",
+      ["teste", "conteudo teste", "", "", ""]
+    );
+    res.json({ ok: true, row: result.rows[0] });
+  } catch(e) {
+    res.status(500).json({ erro: e.message });
+  }
+});
+
 app.get(["/api/stories", "/historias"], async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM stories ORDER BY id ASC");
