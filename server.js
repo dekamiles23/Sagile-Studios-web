@@ -29,9 +29,22 @@ pool.query(`
     id SERIAL PRIMARY KEY,
     title TEXT,
     content TEXT,
+    capa TEXT,
+    classificacao TEXT,
+    genero TEXT,
+    capitulos TEXT DEFAULT '[]',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
-`).catch(console.error);
+`).then(() => {
+  // adiciona colunas novas se a tabela já existia sem elas
+  return pool.query(`
+    ALTER TABLE stories
+      ADD COLUMN IF NOT EXISTS capa TEXT,
+      ADD COLUMN IF NOT EXISTS classificacao TEXT,
+      ADD COLUMN IF NOT EXISTS genero TEXT,
+      ADD COLUMN IF NOT EXISTS capitulos TEXT DEFAULT '[]'
+  `);
+}).catch(console.error);
 
 // ===== UPLOADS =====
 const UPLOADS_DIR = path.join(__dirname, "uploads");
@@ -49,11 +62,16 @@ const upload = multer({ storage });
 
 app.use("/uploads", express.static(UPLOADS_DIR));
 
-// ===== ROTAS API =====
 app.get(["/api/stories", "/historias"], async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM stories ORDER BY id DESC");
-    res.json(result.rows);
+    const result = await pool.query("SELECT * FROM stories ORDER BY id ASC");
+    const rows = result.rows.map(r => ({
+      ...r,
+      titulo: r.title,
+      sinopse: r.content,
+      capitulos: JSON.parse(r.capitulos || "[]")
+    }));
+    res.json(rows);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Erro ao buscar histórias" });
@@ -63,11 +81,12 @@ app.get(["/api/stories", "/historias"], async (req, res) => {
 app.post(["/api/stories", "/historias"], async (req, res) => {
   const title = req.body.title || req.body.titulo;
   const content = req.body.content || req.body.sinopse;
-  if (!title || !content) return res.status(400).json({ error: "title/titulo e content/sinopse obrigatórios" });
+  const { capa, classificacao, genero } = req.body;
+  if (!title || !content) return res.status(400).json({ error: "titulo e sinopse obrigatórios" });
   try {
     const result = await pool.query(
-      "INSERT INTO stories (title, content) VALUES ($1, $2) RETURNING *",
-      [title, content]
+      "INSERT INTO stories (title, content, capa, classificacao, genero, capitulos) VALUES ($1,$2,$3,$4,$5,'[]') RETURNING *",
+      [title, content, capa || "", classificacao || "", genero || ""]
     );
     res.json(result.rows[0]);
   } catch (err) {
@@ -76,7 +95,7 @@ app.post(["/api/stories", "/historias"], async (req, res) => {
   }
 });
 
-app.delete("/historias/:id", async (req, res) => {
+app.delete(["/historias/:id", "/api/stories/:id"], async (req, res) => {
   const id = parseInt(req.params.id);
   try {
     await pool.query("DELETE FROM stories WHERE id = $1", [id]);
@@ -84,6 +103,39 @@ app.delete("/historias/:id", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Erro ao deletar" });
+  }
+});
+
+app.post(["/historias/:id/capitulos"], async (req, res) => {
+  const id = parseInt(req.params.id);
+  const { titulo, texto } = req.body;
+  if (!titulo || !texto) return res.status(400).json({ error: "titulo e texto obrigatórios" });
+  try {
+    const result = await pool.query("SELECT capitulos FROM stories WHERE id = $1", [id]);
+    if (!result.rows.length) return res.status(404).json({ error: "não encontrada" });
+    const caps = JSON.parse(result.rows[0].capitulos || "[]");
+    caps.push({ titulo, texto });
+    await pool.query("UPDATE stories SET capitulos = $1 WHERE id = $2", [JSON.stringify(caps), id]);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erro ao salvar capítulo" });
+  }
+});
+
+app.delete("/historias/:id/capitulos/:capId", async (req, res) => {
+  const id = parseInt(req.params.id);
+  const capId = parseInt(req.params.capId);
+  try {
+    const result = await pool.query("SELECT capitulos FROM stories WHERE id = $1", [id]);
+    if (!result.rows.length) return res.status(404).json({ error: "não encontrada" });
+    const caps = JSON.parse(result.rows[0].capitulos || "[]");
+    caps.splice(capId, 1);
+    await pool.query("UPDATE stories SET capitulos = $1 WHERE id = $2", [JSON.stringify(caps), id]);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erro ao deletar capítulo" });
   }
 });
 
