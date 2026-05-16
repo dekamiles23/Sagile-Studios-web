@@ -300,7 +300,8 @@ function fecharCapModal() { document.getElementById("capModalOverlay").style.dis
 // API + localStorage fallback
 const API = "https://sagile-studios.onrender.com";
 const params = new URLSearchParams(window.location.search);
-const idx = parseInt(params.get("id"));
+const storyId = parseInt(params.get("id")); // id real do banco
+const idx = parseInt(params.get("idx") || "0"); // índice para fallback local
 let historia = null;
 
 async function carregarHistoria() {
@@ -308,11 +309,11 @@ async function carregarHistoria() {
     const res = await fetch(`${API}/historias`);
     if (!res.ok) throw new Error();
     const historias = await res.json();
-    historia = historias[idx];
+    historia = historias.find(h => h.id === storyId) || historias[idx];
     localStorage.setItem("hp_historias", JSON.stringify(historias));
   } catch(e) {
     const historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
-    historia = historias[idx];
+    historia = historias.find(h => h.id === storyId) || historias[idx];
   }
 
   if (!historia) {
@@ -369,18 +370,20 @@ async function salvarCapitulo() {
   const novoCapitulo = { titulo, texto };
 
   try {
-    const res = await fetch(`${API}/historias/${idx}/capitulos`, {
+    const res = await fetch(`${API}/historias/${storyId}/capitulos`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(novoCapitulo)
     });
     if (!res.ok) throw new Error();
   } catch(e) {
-    // fallback localStorage
     const historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
-    if (!historias[idx].capitulos) historias[idx].capitulos = [];
-    historias[idx].capitulos.push(novoCapitulo);
-    localStorage.setItem("hp_historias", JSON.stringify(historias));
+    const h = historias.find(h => h.id === storyId) || historias[idx];
+    if (h) {
+      if (!h.capitulos) h.capitulos = [];
+      h.capitulos.push(novoCapitulo);
+      localStorage.setItem("hp_historias", JSON.stringify(historias));
+    }
   }
 
   document.getElementById("capTitulo").value = "";
@@ -394,11 +397,14 @@ async function salvarCapitulo() {
 async function deletarCapitulo(capId) {
   if (!confirm("Remover este capítulo?")) return;
   try {
-    await fetch(`${API}/historias/${idx}/capitulos/${capId}`, { method: "DELETE" });
+    await fetch(`${API}/historias/${storyId}/capitulos/${capId}`, { method: "DELETE" });
   } catch(e) {
     const historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
-    historias[idx].capitulos.splice(capId, 1);
-    localStorage.setItem("hp_historias", JSON.stringify(historias));
+    const h = historias.find(h => h.id === storyId) || historias[idx];
+    if (h) {
+      h.capitulos.splice(capId, 1);
+      localStorage.setItem("hp_historias", JSON.stringify(historias));
+    }
   }
   await carregarHistoria();
 }

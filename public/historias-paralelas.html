@@ -269,22 +269,21 @@ function renderCarrossel(lista) {
   carousel.style.display = "block";
 
   lista.forEach((h, i) => {
-    const realIdx = historias.indexOf(h);
     const titulo = h.titulo || h.title || "";
     const sinopse = h.sinopse || h.content || "";
     const capa = h.capa || "https://via.placeholder.com/160x230?text=Sem+Capa";
     const card = document.createElement("div");
     card.className = "hp-card";
     card.innerHTML = `
-      <img src="${capa}" alt="${titulo}" style="cursor:pointer;" onclick="abrirHistoria(${realIdx})">
+      <img src="${capa}" alt="${titulo}" style="cursor:pointer;" onclick="abrirHistoria(${h.id}, ${i})">
       <div class="hp-card-info">
-        <h2 style="cursor:pointer;" onclick="abrirHistoria(${realIdx})">${titulo}</h2>
+        <h2 style="cursor:pointer;" onclick="abrirHistoria(${h.id}, ${i})">${titulo}</h2>
         <div class="hp-rating" style="color:gold;">${h.classificacao ? '🔞 ' + h.classificacao : ''}</div>
         <div style="opacity:0.7; font-size:13px; margin-bottom:6px;">${h.genero || ''}</div>
         <p>${sinopse}</p>
         <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-          <button onclick="abrirHistoria(${realIdx})" style="padding:10px 22px;border:none;border-radius:8px;background:linear-gradient(135deg,#7a5cff,#5f3bff);color:white;cursor:pointer;font-weight:bold;">📖 Ler</button>
-          ${isDev ? `<button onclick="deletarHistoria(${realIdx})" style="padding:10px 16px;border:none;border-radius:8px;background:#ff4444;color:white;cursor:pointer;">🗑</button>` : ""}
+          <button onclick="abrirHistoria(${h.id}, ${i})" style="padding:10px 22px;border:none;border-radius:8px;background:linear-gradient(135deg,#7a5cff,#5f3bff);color:white;cursor:pointer;font-weight:bold;">📖 Ler</button>
+          ${isDev ? `<button onclick="deletarHistoria(${h.id})" style="padding:10px 16px;border:none;border-radius:8px;background:#ff4444;color:white;cursor:pointer;">🗑</button>` : ""}
         </div>
       </div>
     `;
@@ -308,8 +307,8 @@ function goTo(n) {
 document.getElementById("hpPrev").onclick = () => goTo((currentSlide - 1 + historias.length) % historias.length);
 document.getElementById("hpNext").onclick = () => goTo((currentSlide + 1) % historias.length);
 
-function abrirHistoria(idx) {
-  window.location.href = `hp-historia.html?id=${idx}`;
+function abrirHistoria(id, idx) {
+  window.location.href = `hp-historia.html?id=${id}&idx=${idx}`;
 }
 
 async function salvarHistoria() {
@@ -349,9 +348,15 @@ async function salvarHistoria() {
   btnSalvar.textContent = "Publicar";
 }
 
-async function deletarHistoria(i) {
+async function deletarHistoria(id) {
   if (!confirm("Remover esta história?")) return;
-  await fetch(`${API}/historias/${i}`, { method: "DELETE" });
+  try {
+    await fetch(`${API}/historias/${id}`, { method: "DELETE" });
+  } catch(e) {
+    const local = JSON.parse(localStorage.getItem("hp_historias") || "[]");
+    const novo = local.filter(h => h.id !== id);
+    localStorage.setItem("hp_historias", JSON.stringify(novo));
+  }
   await carregarHistorias();
 }
 
