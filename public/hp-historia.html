@@ -8,112 +8,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    .capitulos-lista {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 10px;
-    }
+    .capitulos-lista { display:flex; flex-direction:column; gap:12px; margin-top:10px; }
     .cap-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 18px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 10px;
-      border-left: 3px solid #7a5cff;
-      transition: 0.3s;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 18px; background:rgba(255,255,255,0.06);
+      border-radius:10px; border-left:3px solid #7a5cff; transition:0.3s;
     }
-    .cap-item:hover { background: rgba(122,92,255,0.15); }
-    .cap-item span { font-size: 15px; }
-    .cap-item .cap-actions { display: flex; gap: 8px; }
-    .cap-item button {
-      padding: 5px 12px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 13px;
-    }
-    .btn-ler-cap { background: #7a5cff; color: white; }
-    .btn-del-cap { background: #ff4444; color: white; }
+    .cap-item:hover { background:rgba(122,92,255,0.15); }
+    .cap-item span { font-size:15px; }
+    .cap-item .cap-actions { display:flex; gap:8px; }
+    .cap-item button { padding:5px 12px; border:none; border-radius:6px; cursor:pointer; font-size:13px; }
+    .btn-ler-cap { background:#7a5cff; color:white; }
+    .btn-del-cap { background:#ff4444; color:white; }
 
-    /* MODAL CAPÍTULO */
     .cap-modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.88);
-      z-index: 9000;
-      display: none;
-      justify-content: center;
-      align-items: center;
+      position:fixed; inset:0; background:rgba(0,0,0,0.88);
+      z-index:9000; display:none; justify-content:center; align-items:center;
     }
-    .cap-modal-overlay.active { display: flex; }
     .cap-modal {
-      background: #111;
-      border-radius: 14px;
-      padding: 30px;
-      width: 90%;
-      max-width: 520px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      background:#111; border-radius:14px; padding:30px;
+      width:90%; max-width:520px; display:flex; flex-direction:column; gap:14px;
     }
-    .cap-modal h2 { margin: 0; }
+    .cap-modal h2 { margin:0; }
     .cap-modal input, .cap-modal textarea {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.07);
-      color: white;
-      font-size: 14px;
-      width: 100%;
-      box-sizing: border-box;
+      padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.15);
+      background:rgba(255,255,255,0.07); color:white; font-size:14px;
+      width:100%; box-sizing:border-box;
     }
-    .cap-modal textarea { min-height: 140px; resize: vertical; }
-    .cap-modal-btns { display: flex; gap: 10px; justify-content: flex-end; }
-    .cap-modal-btns button {
-      padding: 10px 22px; border: none; border-radius: 8px;
-      cursor: pointer; font-weight: bold; transition: 0.3s;
-    }
-    .cap-btn-save { background: #7a5cff; color: white; }
-    .cap-btn-cancel { background: rgba(255,255,255,0.1); color: white; }
+    .cap-modal textarea { min-height:140px; resize:vertical; }
+    .cap-modal-btns { display:flex; gap:10px; justify-content:flex-end; }
+    .cap-modal-btns button { padding:10px 22px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition:0.3s; }
+    .cap-btn-save { background:#7a5cff; color:white; }
+    .cap-btn-cancel { background:rgba(255,255,255,0.1); color:white; }
 
-    /* MODAL LEITURA */
     .leitura-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.97);
-      z-index: 9500;
-      display: none;
-      justify-content: center;
-      align-items: flex-start;
-      overflow-y: auto;
-      padding: 60px 20px;
+      position:fixed; inset:0; background:rgba(0,0,0,0.97);
+      z-index:9500; display:none; justify-content:center;
+      align-items:flex-start; overflow-y:auto; padding:60px 20px;
     }
-    .leitura-overlay.active { display: flex; }
-    .leitura-box {
-      max-width: 720px;
-      width: 100%;
-      color: white;
-      line-height: 1.9;
-      font-size: 16px;
-    }
-    .leitura-box h2 { font-size: 24px; margin-bottom: 20px; color: #a78bfa; }
-    .leitura-box p { white-space: pre-wrap; }
+    .leitura-box { max-width:720px; width:100%; color:white; line-height:1.9; font-size:16px; }
+    .leitura-box h2 { font-size:24px; margin-bottom:20px; color:#a78bfa; }
+    .leitura-box p { white-space:pre-wrap; }
     .leitura-fechar {
-      position: fixed;
-      top: 20px; right: 24px;
-      background: rgba(255,255,255,0.1);
-      border: none; color: white;
-      font-size: 22px; padding: 8px 14px;
-      border-radius: 8px; cursor: pointer;
-      z-index: 9600;
+      position:fixed; top:20px; right:24px;
+      background:rgba(255,255,255,0.1); border:none; color:white;
+      font-size:22px; padding:8px 14px; border-radius:8px; cursor:pointer; z-index:9600;
     }
-    .leitura-fechar:hover { background: rgba(255,255,255,0.2); }
-
-    .botoes-compra { display: flex; flex-direction: column; gap: 12px; }
+    .leitura-fechar:hover { background:rgba(255,255,255,0.2); }
   </style>
 </head>
 
-<body id="pageBody" class="page-emd">
+<body class="page-emd">
 
 <audio id="bg-music" autoplay loop>
   <source src="musicbg.mp3" type="audio/mpeg">
@@ -179,62 +124,62 @@ window.addEventListener("DOMContentLoaded", () => {
 
 <!-- CONTEÚDO DA HISTÓRIA -->
 <section class="pagina-livro">
-
   <div class="coluna-capa reveal">
     <img id="hCapa" src="" class="capa destaque">
     <h1 class="titulo-livro reveal delay1" id="hTitulo"></h1>
   </div>
-
   <div class="coluna-info reveal delay2">
     <p><b>Classificação:</b> <span id="hClassificacao"></span></p>
     <p><b>Gêneros:</b><br><span id="hGenero"></span></p>
     <p><b>Plataforma:</b> Sagile Studios</p>
     <p><b>Formato:</b> Online</p>
   </div>
-
   <div class="coluna-sinopse reveal delay3">
     <h2>Sinopse</h2>
     <p id="hSinopse"></p>
-
-    <div style="margin-top: 30px;">
+    <div style="margin-top:30px;">
       <h2>📚 Capítulos</h2>
       <div class="capitulos-lista" id="capitulosList"></div>
-      <div id="capEmpty" style="opacity:0.5; font-size:14px; margin-top:10px; display:none;">Nenhum capítulo publicado ainda.</div>
+      <div id="capEmpty" style="opacity:0.5;font-size:14px;margin-top:10px;display:none;">Nenhum capítulo publicado ainda.</div>
     </div>
   </div>
-
 </section>
 
-<!-- SETA -->
-<div class="area-seta">
-  <div class="seta">▼</div>
-</div>
+<div class="area-seta"><div class="seta">▼</div></div>
 
-<!-- IMAGEM GRANDE (capa) -->
 <section id="capa-grande" class="reveal">
   <img id="hCapaGrande" src="">
 </section>
 
-<!-- AVALIAÇÃO -->
 <section class="avaliacoes reveal">
   <h2>Avalie esta obra</h2>
   <div class="nota">
     <div id="estrelas">
-      <span data-v="1">★</span>
-      <span data-v="2">★</span>
-      <span data-v="3">★</span>
-      <span data-v="4">★</span>
-      <span data-v="5">★</span>
+      <span data-v="1">★</span><span data-v="2">★</span>
+      <span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
     </div>
     <p id="resultado">Clique nas estrelas</p>
   </div>
 </section>
 
-<!-- BOTÃO DEV ADICIONAR CAPÍTULO -->
+<!-- BOTÃO INVISÍVEL DEV (canto inferior esquerdo) -->
+<div id="devTrigger" style="position:fixed;bottom:10px;left:10px;width:30px;height:30px;cursor:pointer;z-index:999;"></div>
+
+<!-- BOTÃO + ADICIONAR CAPÍTULO -->
 <button class="btn-add-hp" id="btnAddCap" style="display:none;" title="Adicionar capítulo">+</button>
 
+<!-- MODAL SENHA -->
+<div class="hp-auth-overlay" id="hpAuthOverlay" style="display:none;">
+  <div class="hp-auth-box">
+    <h2>🔒 Acesso Dev</h2>
+    <input type="password" id="hpSenha" placeholder="Senha">
+    <p class="hp-auth-error" id="hpAuthError">Senha incorreta.</p>
+    <button onclick="verificarSenha()">Entrar</button>
+  </div>
+</div>
+
 <!-- MODAL ADICIONAR CAPÍTULO -->
-<div class="cap-modal-overlay" id="capModalOverlay">
+<div class="cap-modal-overlay" id="capModalOverlay" style="display:none;">
   <div class="cap-modal">
     <h2>📝 Novo Capítulo</h2>
     <input type="text" id="capTitulo" placeholder="Título do capítulo (ex: Capítulo 1 - O Início)">
@@ -246,7 +191,7 @@ window.addEventListener("DOMContentLoaded", () => {
   </div>
 </div>
 
-<!-- MODAL LEITURA DO CAPÍTULO -->
+<!-- MODAL LEITURA -->
 <div class="leitura-overlay" id="leituraOverlay">
   <button class="leitura-fechar" onclick="fecharLeitura()">✕ Fechar</button>
   <div class="leitura-box">
@@ -281,7 +226,7 @@ document.querySelectorAll("a").forEach(link => {
   });
 });
 
-lucide.createIcons();
+window.addEventListener("DOMContentLoaded", () => lucide.createIcons());
 
 // NOTIFICAÇÃO
 function toggleNotif() { document.getElementById("notifBox").classList.toggle("active"); }
@@ -322,23 +267,38 @@ document.querySelectorAll("#estrelas span").forEach(star => {
   });
 });
 
-// DEV
+// DEV AUTH
 const DEV_PASS = "sagiledev2025";
-const isDev = localStorage.getItem("hp_dev") === "1";
+let isDev = localStorage.getItem("hp_dev") === "1";
 
-<<<<<<< HEAD
-// CARREGAR HISTÓRIA
-const params = new URLSearchParams(window.location.search);
-const idx = parseInt(params.get("id"));
-let historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
-let historia = historias[idx];
+function verificarSenha() {
+  if (document.getElementById("hpSenha").value === DEV_PASS) {
+    localStorage.setItem("hp_dev", "1");
+    isDev = true;
+    document.getElementById("hpAuthOverlay").style.display = "none";
+    document.getElementById("btnAddCap").style.display = "flex";
+  } else {
+    document.getElementById("hpAuthError").style.display = "block";
+  }
+}
 
-if (!historia) {
-  document.body.innerHTML = "<div style='text-align:center;padding:100px 20px;color:white;'><h2>História não encontrada.</h2><a href='historias-paralelas.html' style='color:#7a5cff;'>← Voltar</a></div>";
-} else {
-=======
-// API
-const API = "http://localhost:3000";
+if (isDev) document.getElementById("btnAddCap").style.display = "flex";
+
+// Botão invisível no canto inferior esquerdo
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("devTrigger").addEventListener("click", () => {
+    if (!isDev) document.getElementById("hpAuthOverlay").style.display = "flex";
+  });
+});
+
+// MODAL CAPÍTULO
+document.getElementById("btnAddCap").addEventListener("click", () => {
+  document.getElementById("capModalOverlay").style.display = "flex";
+});
+function fecharCapModal() { document.getElementById("capModalOverlay").style.display = "none"; }
+
+// API + localStorage fallback
+const API = "https://sagile-studios.onrender.com";
 const params = new URLSearchParams(window.location.search);
 const idx = parseInt(params.get("id"));
 let historia = null;
@@ -346,10 +306,13 @@ let historia = null;
 async function carregarHistoria() {
   try {
     const res = await fetch(`${API}/historias`);
+    if (!res.ok) throw new Error();
     const historias = await res.json();
     historia = historias[idx];
+    localStorage.setItem("hp_historias", JSON.stringify(historias));
   } catch(e) {
-    historia = null;
+    const historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
+    historia = historias[idx];
   }
 
   if (!historia) {
@@ -357,44 +320,27 @@ async function carregarHistoria() {
     return;
   }
 
->>>>>>> 758f1dc (debug deploy)
-  document.title = historia.titulo + " - Sagile Studios";
-  document.getElementById("hTitulo").textContent = historia.titulo;
+  const titulo = historia.titulo || historia.title || "";
+  const sinopse = historia.sinopse || historia.content || "";
+  const capaUrl = historia.capa || "https://via.placeholder.com/180x260?text=Sem+Capa";
+
+  document.title = titulo + " - Sagile Studios";
+  document.getElementById("hTitulo").textContent = titulo;
   document.getElementById("hClassificacao").textContent = historia.classificacao || "—";
   document.getElementById("hGenero").textContent = historia.genero || "—";
-  document.getElementById("hSinopse").textContent = historia.sinopse;
-
-  const capaUrl = historia.capa || "https://via.placeholder.com/180x260?text=Sem+Capa";
+  document.getElementById("hSinopse").textContent = sinopse;
   document.getElementById("hCapa").src = capaUrl;
   document.getElementById("hCapaGrande").src = capaUrl;
 
-  if (isDev) document.getElementById("btnAddCap").style.display = "flex";
-
-<<<<<<< HEAD
-  renderCapitulos();
-}
-
-function renderCapitulos() {
-  historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
-  historia = historias[idx];
-  const lista = document.getElementById("capitulosList");
-  const empty = document.getElementById("capEmpty");
-  const caps = historia.capitulos || [];
-
-=======
   renderCapitulos(historia.capitulos || []);
 }
 
 function renderCapitulos(caps) {
   const lista = document.getElementById("capitulosList");
   const empty = document.getElementById("capEmpty");
->>>>>>> 758f1dc (debug deploy)
   lista.innerHTML = "";
 
-  if (caps.length === 0) {
-    empty.style.display = "block";
-    return;
-  }
+  if (caps.length === 0) { empty.style.display = "block"; return; }
   empty.style.display = "none";
 
   caps.forEach((cap, i) => {
@@ -411,85 +357,66 @@ function renderCapitulos(caps) {
   });
 }
 
-// MODAL CAPÍTULO
-document.getElementById("btnAddCap").addEventListener("click", () => {
-  document.getElementById("capModalOverlay").classList.add("active");
-});
-function fecharCapModal() { document.getElementById("capModalOverlay").classList.remove("active"); }
-
-<<<<<<< HEAD
-function salvarCapitulo() {
-=======
 async function salvarCapitulo() {
->>>>>>> 758f1dc (debug deploy)
   const titulo = document.getElementById("capTitulo").value.trim();
   const texto = document.getElementById("capTexto").value.trim();
   if (!titulo || !texto) return alert("Preencha o título e o texto do capítulo.");
 
-<<<<<<< HEAD
-  historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
-  if (!historias[idx].capitulos) historias[idx].capitulos = [];
-  historias[idx].capitulos.push({ titulo, texto });
-  localStorage.setItem("hp_historias", JSON.stringify(historias));
-=======
-  await fetch(`${API}/historias/${idx}/capitulos`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ titulo, texto })
-  });
->>>>>>> 758f1dc (debug deploy)
+  const btnSalvar = document.querySelector(".cap-btn-save");
+  btnSalvar.disabled = true;
+  btnSalvar.textContent = "Publicando...";
+
+  const novoCapitulo = { titulo, texto };
+
+  try {
+    const res = await fetch(`${API}/historias/${idx}/capitulos`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(novoCapitulo)
+    });
+    if (!res.ok) throw new Error();
+  } catch(e) {
+    // fallback localStorage
+    const historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
+    if (!historias[idx].capitulos) historias[idx].capitulos = [];
+    historias[idx].capitulos.push(novoCapitulo);
+    localStorage.setItem("hp_historias", JSON.stringify(historias));
+  }
 
   document.getElementById("capTitulo").value = "";
   document.getElementById("capTexto").value = "";
   fecharCapModal();
-<<<<<<< HEAD
-  renderCapitulos();
-}
-
-function deletarCapitulo(i) {
-  if (!confirm("Remover este capítulo?")) return;
-  historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
-  historias[idx].capitulos.splice(i, 1);
-  localStorage.setItem("hp_historias", JSON.stringify(historias));
-  renderCapitulos();
-}
-
-// LEITURA
-function lerCapitulo(i) {
-  historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
-  const cap = historias[idx].capitulos[i];
-=======
+  btnSalvar.disabled = false;
+  btnSalvar.textContent = "Publicar";
   await carregarHistoria();
 }
 
 async function deletarCapitulo(capId) {
   if (!confirm("Remover este capítulo?")) return;
-  await fetch(`${API}/historias/${idx}/capitulos/${capId}`, { method: "DELETE" });
+  try {
+    await fetch(`${API}/historias/${idx}/capitulos/${capId}`, { method: "DELETE" });
+  } catch(e) {
+    const historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
+    historias[idx].capitulos.splice(capId, 1);
+    localStorage.setItem("hp_historias", JSON.stringify(historias));
+  }
   await carregarHistoria();
 }
 
-// LEITURA
-let capsCache = [];
-async function lerCapitulo(i) {
-  const res = await fetch(`${API}/historias`);
-  const historias = await res.json();
-  const cap = historias[idx].capitulos[i];
-  capsCache = historias[idx].capitulos;
->>>>>>> 758f1dc (debug deploy)
+function lerCapitulo(i) {
+  const caps = historia.capitulos || [];
+  const cap = caps[i];
   document.getElementById("leituraTitulo").textContent = cap.titulo;
   document.getElementById("leituraTexto").textContent = cap.texto;
-  document.getElementById("leituraOverlay").classList.add("active");
+  document.getElementById("leituraOverlay").style.display = "flex";
   document.body.style.overflow = "hidden";
 }
 function fecharLeitura() {
-  document.getElementById("leituraOverlay").classList.remove("active");
+  document.getElementById("leituraOverlay").style.display = "none";
   document.body.style.overflow = "";
 }
-<<<<<<< HEAD
-=======
 
 carregarHistoria();
->>>>>>> 758f1dc (debug deploy)
 </script>
 
 <script src="updater-ui.js"></script>

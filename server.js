@@ -50,7 +50,7 @@ const upload = multer({ storage });
 app.use("/uploads", express.static(UPLOADS_DIR));
 
 // ===== ROTAS API =====
-app.get("/api/stories", async (req, res) => {
+app.get(["/api/stories", "/historias"], async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM stories ORDER BY id DESC");
     res.json(result.rows);
@@ -60,9 +60,10 @@ app.get("/api/stories", async (req, res) => {
   }
 });
 
-app.post("/api/stories", async (req, res) => {
-  const { title, content } = req.body;
-  if (!title || !content) return res.status(400).json({ error: "title e content obrigatórios" });
+app.post(["/api/stories", "/historias"], async (req, res) => {
+  const title = req.body.title || req.body.titulo;
+  const content = req.body.content || req.body.sinopse;
+  if (!title || !content) return res.status(400).json({ error: "title/titulo e content/sinopse obrigatórios" });
   try {
     const result = await pool.query(
       "INSERT INTO stories (title, content) VALUES ($1, $2) RETURNING *",
@@ -72,6 +73,17 @@ app.post("/api/stories", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Erro ao salvar história" });
+  }
+});
+
+app.delete("/historias/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    await pool.query("DELETE FROM stories WHERE id = $1", [id]);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erro ao deletar" });
   }
 });
 
