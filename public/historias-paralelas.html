@@ -240,9 +240,11 @@ let currentSlide = 0;
 
 async function carregarHistorias() {
   try {
-    const res = await fetch(`${API}/historias`);
-    if (!res.ok) throw new Error();
-    historias = await res.json();
+    const res = await fetch(`${API}/historias`, { signal: AbortSignal.timeout(10000) });
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    const data = await res.json();
+    if (!Array.isArray(data)) throw new Error("resposta inválida");
+    historias = data;
     localStorage.setItem("hp_historias", JSON.stringify(historias));
   } catch(e) {
     historias = JSON.parse(localStorage.getItem("hp_historias") || "[]");
