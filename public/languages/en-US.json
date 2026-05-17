@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "books": "Books",
+    "games": "Games",
+    "comics": "Comics",
+    "about": "About",
+    "news": "News"
+  },
+  "index": {
+    "title": "Sagile Studios - Creative Studio of Animations, Comics and Books",
+    "banner_title": "Welcome to Sagile Studios",
+    "banner_subtitle": "Exploring worlds through stories",
+    "search_placeholder": "Search...",
+    "works_title": "Works",
+    "about_title": "WHAT IS SAGILE STUDIOS?",
+    "about_text": "Sagile Studios is a company founded by Miles Deka in 2025, with roots going back to 2020. Sagile Studios distributes webcomics, books and more to its audience. Currently there is only one member, but more updates about the company's future are coming.",
+    "foundation_title": "Foundation",
+    "foundation_text": "The foundation took place in 2024, the idea came from Miles Deka, starting as a draft. The intention was for the company to be an animation, comics and books studio.",
+    "works_section_title": "Works",
+    "works_text": "Miles Deka's works are available on the site. You can buy from us or from our partners.",
+    "ideas_title": "Ideas and projects",
+    "ideas_text": "We have a great desire to become a large company, create video games and even work with films and motion capture games.",
+    "social_title": "Social media",
+    "social_text": "You can follow us on Instagram, YouTube and more.",
+    "news_title": "News",
+    "news_see_all": "See all →",
+    "news_1_title": "New Kamai SEN chapter",
+    "news_1_text": "Chapter 2 now available with new scenes and development.",
+    "news_2_title": "Update on In My Destiny",
+    "news_2_text": "New artwork and story adjustments have been added.",
+    "news_3_title": "Site updated",
+    "news_3_text": "Visual improvements and new AAA interface implemented."
+  },
+  "livro": {
+    "title": "Books Section",
+    "search_placeholder": "Search books, games, comics...",
+    "parallel_stories": "📖 Parallel Stories",
+    "catalog_title": "Books",
+    "catalog_subtitle": "Get ready for a long adventure of fantasy and science fiction, fully enjoy our stories.",
+    "all": "🌐 All",
+    "popular": "⭐ Popular",
+    "recent": "🆕 Recent",
+    "horror": "😱 Horror",
+    "action": "⚔️ Action",
+    "trilogy": "📖 Trilogy"
+  },
+  "games": {
+    "title": "Games - Sagile Studios",
+    "search_placeholder": "Search books, games, comics...",
+    "eclipse_desc": "Eclipse-7 aims to bring retro, old and some modern games to the platform. The goal is to entertain users with our utilities.",
+    "version_label": "Version:",
+    "download_btn": "Download",
+    "enjoy_text": "Enjoy the selected version, as new updates will arrive soon."
+  },
+  "comics": {
+    "title": "Comics",
+    "search_placeholder": "Search books, games, comics...",
+    "catalog_subtitle": "An adventure awaits you. Our comic books will transform your leisure into something exploratory and adventurous."
+  },
+  "sobre": {
+    "title": "Who are we?",
+    "text": "Sagile Studios is a company founded by Miles Deka. It brings games, animations, and comics from its works. Kamai SEN is a comic created by Miles Deka and available under the Sagile Studios brand, and other titles are also by the same author."
+  },
+  "novidades": {
+    "title": "News",
+    "kamai_title": "Kamai SEN",
+    "kamai_date": "Release: 12/04/2026",
+    "kamai_text": "Not yet available, expected this month.",
+    "kamai_prev": "Previous chapter:",
+    "kamai_read": "Read here",
+    "attic_title": "Attic Horror's",
+    "attic_text": "Project still in progress.",
+    "emd_title": "In My Destiny - Alternate Universes",
+    "emd_text": "Project still in progress."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "networks": "Networks"
+  },
+  "notif": {
+    "update": "New update available",
+    "chapter": "New chapter released"
+  },
+  "lang_selector": "Language"
+}

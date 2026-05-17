@@ -2700,3 +2700,24 @@ nav#menu.mobile-open a,
 nav#menu.mobile-open .highlight {
   display: none !important;
 }
+
+/* SELETOR DE IDIOMA */
+#langSelector {
+  background: rgba(255,255,255,0.08);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s;
+  outline: none;
+}
+#langSelector:hover {
+  border-color: #7a5cff;
+  box-shadow: 0 0 8px rgba(122,92,255,0.4);
+}
+#langSelector option {
+  background: #111;
+  color: white;
+}

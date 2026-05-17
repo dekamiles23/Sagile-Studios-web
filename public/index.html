@@ -24,9 +24,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="/i18n.js"></script>
 
 </head>
-<body>
+<body data-page="index">
 
 <script>
 document.addEventListener('click', function(e) {
@@ -268,11 +269,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     <nav id="menu" class="menu">
         <div class="highlight"></div>
-        <a href="livro.html">Livros</a>
-        <a href="games.html">Games</a>
-        <a href="comics.html">Comics</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="novidades.html">Novidades</a>
+        <a href="livro.html" data-i18n="nav.books">Livros</a>
+        <a href="games.html" data-i18n="nav.games">Games</a>
+        <a href="comics.html" data-i18n="nav.comics">Comics</a>
+        <a href="sobre.html" data-i18n="nav.about">Sobre</a>
+        <a href="novidades.html" data-i18n="nav.news">Novidades</a>
     </nav>
 
     <div class="right-icons">
@@ -306,6 +307,12 @@ window.addEventListener("DOMContentLoaded", () => {
         </a>
 
         <div class="menu-toggle" id="menuToggle">☰</div>
+
+        <!-- SELETOR DE IDIOMA -->
+        <select id="langSelector" onchange="window.i18n.setLang(this.value); location.reload();" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:4px 8px;font-size:13px;cursor:pointer;">
+          <option value="pt-br">🇧🇷 PT</option>
+          <option value="en-US">🇺🇸 EN</option>
+        </select>
 
     </div>
 
@@ -345,15 +352,15 @@ function startUpdate() {
 
 <!-- BANNER -->
 <section class="banner">
-    <h1>Bem-vindo à Sagile Studios</h1>
-    <p>Explorando mundos através de histórias</p>
+    <h1 data-i18n="index.banner_title">Bem-vindo à Sagile Studios</h1>
+    <p data-i18n="index.banner_subtitle">Explorando mundos através de histórias</p>
 </section>
 
 <div class="search-area">
-    <input type="text" id="search" placeholder="Pesquisar...">
+    <input type="text" id="search" data-i18n-placeholder="index.search_placeholder" placeholder="Pesquisar...">
 </div>
 
-<h2 class="titulo-secao">Obras</h2>
+<h2 class="titulo-secao" data-i18n="index.works_title">Obras</h2>
 
 <!-- CARROSSEL -->
 <section class="carrossel">
@@ -519,28 +526,28 @@ window.addEventListener("load", revealOnScroll);
 <section class="home-news">
 
     <div class="news-header">
-        <h2>Novidades</h2>
+    <h2 data-i18n="index.news_title">Novidades</h2>
         <div class="linha-ps"></div>
-        <a href="novidades.html" class="ver-tudo">Ver tudo →</a>
+        <a href="novidades.html" class="ver-tudo" data-i18n="index.news_see_all">Ver tudo →</a>
     </div>
 
     <div class="news-preview">
 
         <div class="news-card">
-            <h3>Novo capítulo de Kamai SEN</h3>
-            <p>Capítulo 2 já disponível com novas cenas e desenvolvimento.</p>
+            <h3 data-i18n="index.news_1_title">Novo capítulo de Kamai SEN</h3>
+            <p data-i18n="index.news_1_text">Capítulo 2 já disponível com novas cenas e desenvolvimento.</p>
             <span>12 Abril 2026</span>
         </div>
 
         <div class="news-card">
-            <h3>Atualização em Em Meu Destino</h3>
-            <p>Nova arte e ajustes na história foram adicionados.</p>
+            <h3 data-i18n="index.news_2_title">Atualização em Em Meu Destino</h3>
+            <p data-i18n="index.news_2_text">Nova arte e ajustes na história foram adicionados.</p>
             <span>10 Abril 2026</span>
         </div>
 
         <div class="news-card">
-            <h3>Site atualizado</h3>
-            <p>Melhorias visuais e nova interface AAA implementada.</p>
+            <h3 data-i18n="index.news_3_title">Site atualizado</h3>
+            <p data-i18n="index.news_3_text">Melhorias visuais e nova interface AAA implementada.</p>
             <span>08 Abril 2026</span>
         </div>
 
@@ -577,7 +584,7 @@ window.addEventListener("load", revealOnScroll);
     </div>
 
     <div class="footer-bottom">
-        <p>Todos os direitos reservados.</p>
+        <p data-i18n="footer.rights">Todos os direitos reservados.</p>
     </div>
 </footer>
 

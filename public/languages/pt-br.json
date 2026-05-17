@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "books": "Livros",
+    "games": "Games",
+    "comics": "Comics",
+    "about": "Sobre",
+    "news": "Novidades"
+  },
+  "index": {
+    "title": "Sagile Studios - Estúdio Criativo de Animações, Quadrinhos e Livros",
+    "banner_title": "Bem-vindo à Sagile Studios",
+    "banner_subtitle": "Explorando mundos através de histórias",
+    "search_placeholder": "Pesquisar...",
+    "works_title": "Obras",
+    "about_title": "O QUE É A SAGILE STUDIOS?",
+    "about_text": "A Sagile studios é uma empresa fundada por Miles Deka no ano de 2025, já havia resquícios de sua criação desde 2020, o projeto da empresa foi andar para frente nesse ano por agora. A Sagile Studios é uma empresa que distribui webcomics, livros e afins para o público alvo, no momento só há um integrante, futuramente haverá mais atualizações do que será a empresa daqui para frente.",
+    "foundation_title": "Fundação",
+    "foundation_text": "A Fundação ocorreu em 2024, a ideia veio de Miles Deka, então se iniciou-se como um rascunho, a intenção era que a empresa assim como a ideia de hoje, seja um estúdio de animações, HQ's, e livros, dentre outros.",
+    "works_section_title": "Obras",
+    "works_text": "As obras de Miles Deka estão disponíveis no site, você pode comprar conosco, ou em nossos parceiros.",
+    "ideas_title": "Ideias e projetos",
+    "ideas_text": "Temos o enorme desejo de ser uma empresa grande, criar videogames e até trabalhar com filmes, e jogos com captura de movimento.",
+    "social_title": "Redes sociais",
+    "social_text": "Você pode nos seguir no instagram, youtube e dentre outros.",
+    "news_title": "Novidades",
+    "news_see_all": "Ver tudo →",
+    "news_1_title": "Novo capítulo de Kamai SEN",
+    "news_1_text": "Capítulo 2 já disponível com novas cenas e desenvolvimento.",
+    "news_2_title": "Atualização em Em Meu Destino",
+    "news_2_text": "Nova arte e ajustes na história foram adicionados.",
+    "news_3_title": "Site atualizado",
+    "news_3_text": "Melhorias visuais e nova interface AAA implementada."
+  },
+  "livro": {
+    "title": "Sessão de Livros",
+    "search_placeholder": "Pesquisar livros, games, comics...",
+    "parallel_stories": "📖 Histórias paralelas",
+    "catalog_title": "Livros",
+    "catalog_subtitle": "Prepare-se para uma aventura longa de fantasia e ficção científica, aproveite totalmente de nossas histórias.",
+    "all": "🌐 Todos",
+    "popular": "⭐ Populares",
+    "recent": "🆕 Recentes",
+    "horror": "😱 Terror",
+    "action": "⚔️ Ação",
+    "trilogy": "📖 Trilogia"
+  },
+  "games": {
+    "title": "Games - Sagile Studios",
+    "search_placeholder": "Pesquisar livros, games, comics...",
+    "eclipse_desc": "O Eclipse-7 tem o intuito de trazer jogos retrô, antigos, e alguns modernos para dentro da plataforma. O objetivo é fazer o usuário entreter com nossas utilidades.",
+    "version_label": "Versão:",
+    "download_btn": "Download",
+    "enjoy_text": "Aproveite a versão selecionada, pois novas atualizações chegarão em breve."
+  },
+  "comics": {
+    "title": "Comics",
+    "search_placeholder": "Pesquisar livros, games, comics...",
+    "catalog_subtitle": "Uma aventura lhe aguarda, nossas história em quadrinhos irá transformar seu lazer em algo explorativo e aventureiro."
+  },
+  "sobre": {
+    "title": "Quem somos nós?",
+    "text": "A Sagile Studios é uma empresa fundada por Miles Deka, ela trás jogos, animações, games, e comics de suas obras e sugestões para criação de novas obras. Kamai SEN é uma comic criada por Miles Deka e disponível com a marca de Sagile Studios, e outros títulos também são de mesma autoria."
+  },
+  "novidades": {
+    "title": "Novidades",
+    "kamai_title": "Kamai SEN",
+    "kamai_date": "Lançamento: 04/12/2026",
+    "kamai_text": "Ainda não disponível, previsão ainda neste mês.",
+    "kamai_prev": "Capítulo anterior:",
+    "kamai_read": "Ler aqui",
+    "attic_title": "Attic Horror's",
+    "attic_text": "Projeto ainda em andamento.",
+    "emd_title": "Em meu Destino - Universos Alternativos",
+    "emd_text": "Projeto ainda em andamento."
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados.",
+    "networks": "Redes"
+  },
+  "notif": {
+    "update": "Nova atualização disponível",
+    "chapter": "Capítulo novo lançado"
+  },
+  "lang_selector": "Idioma"
+}
