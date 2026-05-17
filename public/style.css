@@ -2627,3 +2627,13 @@ background-position:center;
 
   nav#menu .highlight { display: none !important; }
 }
+
+/* ========================= */
+/* MENU MOBILE - CORREÇÃO FINAL */
+/* ========================= */
+
+@media (max-width: 768px) {
+  /* garante que o active sempre vence o !important */
+  nav#menu { display: none !important; }
+  nav#menu.active { display: flex !important; }
+}
