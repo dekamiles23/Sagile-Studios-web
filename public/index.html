@@ -29,28 +29,22 @@
 <body>
 
 <script>
-// MENU TOGGLE - captura antes de qualquer outro listener
 document.addEventListener('click', function(e) {
   var toggle = document.getElementById('menuToggle');
   if (toggle && (e.target === toggle || toggle.contains(e.target))) {
     e.stopImmediatePropagation();
     e.preventDefault();
     var menu = document.getElementById('menu');
-    var aberto = menu.style.display === 'flex';
-    menu.style.display = aberto ? 'none' : 'flex';
-    menu.style.flexDirection = 'column';
-    menu.style.position = 'fixed';
-    menu.style.top = '60px';
-    menu.style.left = '0';
-    menu.style.width = '100%';
-    menu.style.background = 'rgba(5,5,20,0.97)';
-    menu.style.padding = '16px';
-    menu.style.zIndex = '9999';
-    menu.style.gap = '8px';
-    menu.style.boxSizing = 'border-box';
-    toggle.textContent = aberto ? '☰' : '✕';
+    var aberto = menu.classList.contains('mobile-open');
+    if (aberto) {
+      menu.classList.remove('mobile-open');
+      toggle.textContent = '☰';
+    } else {
+      menu.classList.add('mobile-open');
+      toggle.textContent = '✕';
+    }
   }
-}, true); // true = capture phase, executa antes de tudo
+}, true);
 </script>
 
     
