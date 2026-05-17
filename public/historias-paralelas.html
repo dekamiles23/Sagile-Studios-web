@@ -45,11 +45,11 @@ window.addEventListener("DOMContentLoaded", () => {
   </div>
   <nav class="menu" id="menu">
     <div class="highlight"></div>
-    <a href="livro.html">Livros</a>
-    <a href="games.html">Games</a>
-    <a href="comics.html">Comics</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="novidades.html">Novidades</a>
+    <a href="livro.html" data-i18n="nav_books">Livros</a>
+    <a href="games.html" data-i18n="nav_games">Games</a>
+    <a href="comics.html" data-i18n="nav_comics">Comics</a>
+    <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+    <a href="novidades.html" data-i18n="nav_news">Novidades</a>
   </nav>
   <div class="right-icons">
     <div class="notification-wrapper">
@@ -58,8 +58,8 @@ window.addEventListener("DOMContentLoaded", () => {
         <span class="badge">3</span>
       </div>
       <div class="notif-box" id="notifBox">
-        <p>Nova atualização disponível</p>
-        <p>Capítulo novo lançado</p>
+        <p data-i18n="notif_update">Nova atualização disponível</p>
+        <p data-i18n="notif_chapter">Capítulo novo lançado</p>
       </div>
     </div>
     <a href="faleconosco.html" class="icon-btn"><i data-lucide="message-circle"></i></a>
@@ -74,21 +74,21 @@ window.addEventListener("DOMContentLoaded", () => {
 <!-- BANNER -->
 <section class="banner-livros">
   <div class="banner-livros-content">
-    <h1>📖 Histórias Paralelas</h1>
-    <p>Histórias que expandem o universo Sagile</p>
+    <h1 data-i18n="hp_banner_title">📖 Histórias Paralelas</h1>
+    <p data-i18n="hp_banner_sub">Histórias que expandem o universo Sagile</p>
   </div>
 </section>
 
 <!-- PESQUISA -->
 <div class="search-area" style="text-align:center; padding: 20px 0 0;">
-  <input type="text" id="search" placeholder="Pesquisar histórias...">
+  <input type="text" id="search" data-i18n-placeholder="search_stories" placeholder="Pesquisar histórias...">
 </div>
 
 <div class="divider"></div>
 
 <div style="text-align:center; padding: 10px 0 5px;">
-  <h1 style="margin:0;">Histórias Paralelas</h1>
-  <p class="subtitulo-catalogo">Conteúdo exclusivo do universo expandido.</p>
+  <h1 style="margin:0;" data-i18n="hp_section_title">Histórias Paralelas</h1>
+  <p class="subtitulo-catalogo" data-i18n="hp_section_sub">Conteúdo exclusivo do universo expandido.</p>
 </div>
 
 <!-- CARROSSEL -->
@@ -100,11 +100,11 @@ window.addEventListener("DOMContentLoaded", () => {
 <div class="hp-dots" id="hpDots"></div>
 
 <div id="hpEmpty" style="text-align:center; padding:60px 20px; opacity:0.5; display:none;">
-  <p>Nenhuma história publicada ainda.</p>
+  <p data-i18n="hp_empty">Nenhuma história publicada ainda.</p>
 </div>
 
 <!-- BOTÃO DEV INVISÍVEL -->
-<div id="devTrigger" style="position:fixed;bottom:10px;left:10px;width:30px;height:30px;cursor:pointer;z-index:999;"></div>
+<div id="devTrigger" style="position:fixed;bottom:10px;left:10px;width:30px;height:30px;cursor:pointer;z-index:99998;"></div>
 
 <!-- BOTÃO DEV -->
 <button class="btn-add-hp" id="btnAddHp" style="display:none;" title="Criar história">+</button>
@@ -112,22 +112,22 @@ window.addEventListener("DOMContentLoaded", () => {
 <!-- MODAL SENHA -->
 <div class="hp-auth-overlay" id="hpAuthOverlay" style="display:none;">
   <div class="hp-auth-box">
-    <h2>🔒 Acesso Dev</h2>
-    <input type="password" id="hpSenha" placeholder="Senha">
-    <p class="hp-auth-error" id="hpAuthError">Senha incorreta.</p>
-    <button onclick="verificarSenha()">Entrar</button>
+    <h2 data-i18n="hp_dev_title">🔒 Acesso Dev</h2>
+    <input type="password" id="hpSenha" data-i18n-placeholder="hp_dev_pass" placeholder="Senha">
+    <p class="hp-auth-error" id="hpAuthError" data-i18n="hp_dev_wrong">Senha incorreta.</p>
+    <button onclick="verificarSenha()" data-i18n="hp_dev_enter">Entrar</button>
   </div>
 </div>
 
 <!-- MODAL CRIAR HISTÓRIA -->
 <div class="hp-modal-overlay" id="hpModalOverlay" style="display:none;">
   <div class="hp-modal">
-    <h2>📖 Criar História</h2>
-    <input type="text" id="hpTitulo" placeholder="Título da história">
-    <input type="text" id="hpCapa" placeholder="URL da capa">
-    <textarea id="hpSinopse" placeholder="Sinopse"></textarea>
+    <h2 data-i18n="hp_modal_title">📖 Criar História</h2>
+    <input type="text" id="hpTitulo" data-i18n-placeholder="hp_modal_story_title" placeholder="Título da história">
+    <input type="text" id="hpCapa" data-i18n-placeholder="hp_modal_cover" placeholder="URL da capa">
+    <textarea id="hpSinopse" data-i18n-placeholder="hp_modal_synopsis" placeholder="Sinopse"></textarea>
     <select id="hpClassificacao">
-      <option value="">Classificação etária...</option>
+      <option value="" data-i18n="hp_modal_rating">Classificação etária...</option>
       <option value="Livre">Livre</option>
       <option value="+10">+10</option>
       <option value="+12">+12</option>
@@ -135,10 +135,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <option value="+16">+16</option>
       <option value="+18">+18</option>
     </select>
-    <input type="text" id="hpGenero" placeholder="Gêneros (ex: Ação, Fantasia, Terror)">
+    <input type="text" id="hpGenero" data-i18n-placeholder="hp_modal_genre" placeholder="Gêneros (ex: Ação, Fantasia, Terror)">
     <div class="hp-modal-btns">
-      <button class="hp-btn-cancel" onclick="fecharModal()">Cancelar</button>
-      <button class="hp-btn-save" onclick="salvarHistoria()">Publicar</button>
+      <button class="hp-btn-cancel" onclick="fecharModal()" data-i18n="hp_modal_cancel">Cancelar</button>
+      <button class="hp-btn-save" onclick="salvarHistoria()" data-i18n="hp_modal_publish">Publicar</button>
     </div>
   </div>
 </div>
@@ -320,7 +320,7 @@ async function salvarHistoria() {
   const classificacao = document.getElementById("hpClassificacao").value;
   const genero = document.getElementById("hpGenero").value.trim();
 
-  if (!titulo || !sinopse) return alert("Preencha pelo menos o título e a sinopse.");
+  if (!titulo || !sinopse) return alert(window.i18n ? window.i18n.t('hp_fill_alert') : 'Preencha pelo menos o título e a sinopse.');
 
   const btnSalvar = document.querySelector(".hp-btn-save");
   btnSalvar.disabled = true;
@@ -351,7 +351,7 @@ async function salvarHistoria() {
 }
 
 async function deletarHistoria(id) {
-  if (!confirm("Remover esta história?")) return;
+  if (!confirm(window.i18n ? window.i18n.t('hp_delete_confirm') : 'Remover esta história?')) return;
   try {
     await fetch(`${API}/historias/${id}`, { method: "DELETE" });
   } catch(e) {
@@ -372,6 +372,7 @@ document.getElementById("search").addEventListener("input", function() {
 </script>
 
 <script src="updater-ui.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
 
@@ -382,18 +383,18 @@ document.getElementById("search").addEventListener("input", function() {
       <p>Sagile Studios © 2026</p>
     </div>
     <div class="footer-links">
-      <a href="livro.html">Livros</a>
-      <a href="games.html">Games</a>
-      <a href="comics.html">Comics</a>
-      <a href="sobre.html">Sobre</a>
+      <a href="livro.html" data-i18n="nav_books">Livros</a>
+      <a href="games.html" data-i18n="nav_games">Games</a>
+      <a href="comics.html" data-i18n="nav_comics">Comics</a>
+      <a href="sobre.html" data-i18n="nav_about">Sobre</a>
     </div>
     <div class="footer-social">
-      <p>Redes</p>
+      <p data-i18n="footer_social">Redes</p>
       <a href="#">Instagram</a>
       <a href="#">YouTube</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>Todos os direitos reservados.</p>
+    <p data-i18n="footer_rights">Todos os direitos reservados.</p>
   </div>
 </footer>

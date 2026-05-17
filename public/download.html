@@ -76,11 +76,11 @@ window.addEventListener("DOMContentLoaded", () => {
 <nav class="menu" id="menu">
     <div class="highlight"></div>
 
-    <a href="livro.html">Livros</a>
-    <a href="games.html">Games</a>
-    <a href="comics.html">Comics</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="novidades.html">Novidades</a>
+    <a href="livro.html" data-i18n="nav_books">Livros</a>
+    <a href="games.html" data-i18n="nav_games">Games</a>
+    <a href="comics.html" data-i18n="nav_comics">Comics</a>
+    <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+    <a href="novidades.html" data-i18n="nav_news">Novidades</a>
 </nav>
 
 <div class="right-icons">
@@ -93,8 +93,8 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div class="notif-box" id="notifBox">
-            <p>Nova atualização disponível</p>
-            <p>Capítulo novo lançado</p>
+            <p data-i18n="notif_update">Nova atualização disponível</p>
+            <p data-i18n="notif_chapter">Capítulo novo lançado</p>
         </div>
     </div>
 
@@ -127,15 +127,15 @@ window.addEventListener("DOMContentLoaded", () => {
 <!-- CONTEÚDO CENTRAL -->
 <section class="games-content">
 
-    <h1><strong>Versão Desktop</strong></h1>
+    <h1 data-i18n="download_title"><strong>Versão Desktop</strong></h1>
 
-    <p>
+    <p data-i18n="download_desc">
         O programa da Sagile Studios ainda está em fase beta, aproveite!
     </p>
 
     <div class="version-box">
 
-        <label>Versão:</label>
+        <label data-i18n="download_version">Versão:</label>
 
         <select id="versionSelect">
             <option value="Beta" data-link="https://github.com/dekamiles23/Sagile-Studios/releases/tag/v1.0.8">
@@ -143,11 +143,11 @@ window.addEventListener("DOMContentLoaded", () => {
             </option>
         </select>
 
-        <button id="downloadBtn">Download</button>
+        <button id="downloadBtn" data-i18n="download_btn">Download</button>
 
     </div>
 
-    <p>
+    <p data-i18n="download_note">
        Novas atualizações em breve.
     </p>
 
@@ -247,14 +247,14 @@ button.addEventListener("click", () => {
         </div>
 
         <div class="footer-links">
-            <a href="livro.html">Livros</a>
-            <a href="games.html">Games</a>
-            <a href="comics.html">Comics</a>
-            <a href="sobre.html">Sobre</a>
+            <a href="livro.html" data-i18n="nav_books">Livros</a>
+            <a href="games.html" data-i18n="nav_games">Games</a>
+            <a href="comics.html" data-i18n="nav_comics">Comics</a>
+            <a href="sobre.html" data-i18n="nav_about">Sobre</a>
         </div>
 
         <div class="footer-social">
-            <p>Redes</p>
+            <p data-i18n="footer_social">Redes</p>
             <a href="#">Instagram</a>
             <a href="#">YouTube</a>
         </div>
@@ -262,11 +262,12 @@ button.addEventListener("click", () => {
     </div>
 
     <div class="footer-bottom">
-        <p>Todos os direitos reservados.</p>
+        <p data-i18n="footer_rights">Todos os direitos reservados.</p>
     </div>
 </footer>
 
 <script src="updater-ui.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
 

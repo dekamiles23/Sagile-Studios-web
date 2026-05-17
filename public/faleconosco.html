@@ -147,11 +147,11 @@ window.addEventListener("DOMContentLoaded", () => {
 <nav class="menu" id="menu">
     <div class="highlight"></div>
 
-    <a href="livro.html">Livros</a>
-    <a href="games.html">Games</a>
-    <a href="comics.html">Comics</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="novidades.html">Novidades</a>
+    <a href="livro.html" data-i18n="nav_books">Livros</a>
+    <a href="games.html" data-i18n="nav_games">Games</a>
+    <a href="comics.html" data-i18n="nav_comics">Comics</a>
+    <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+    <a href="novidades.html" data-i18n="nav_news">Novidades</a>
 </nav>
 
 <div class="right-icons">
@@ -164,8 +164,8 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div class="notif-box" id="notifBox">
-            <p>Nova atualização disponível</p>
-            <p>Capítulo novo lançado</p>
+            <p data-i18n="notif_update">Nova atualização disponível</p>
+            <p data-i18n="notif_chapter">Capítulo novo lançado</p>
         </div>
     </div>
 
@@ -213,23 +213,23 @@ window.addEventListener("DOMContentLoaded", () => {
 
 <!-- ✅ SEU CORPO (INTACTO) -->
 <section class="contato-page">
-    <h1>Fale conosco</h1>
-    <p>Envie sugestões ou reporte problemas</p>
+    <h1 data-i18n="contact_title">Fale conosco</h1>
+    <p data-i18n="contact_sub">Envie sugestões ou reporte problemas</p>
 
     <div class="redes">
-        <h2>Nossas redes sociais</h2>
+        <h2 data-i18n="contact_social_title">Nossas redes sociais</h2>
         <a href="https://www.instagram.com/sagilestudios/" target="_blank">Instagram</a>
         <a href="https://www.youtube.com/@milesdekaofc" target="_blank">YouTube</a>
     </div>
 
-    <h2>Sugestões</h2>
-    <p>(Eles enviam e apenas você pode ler)</p>
+    <h2 data-i18n="contact_suggestions">Sugestões</h2>
+    <p data-i18n="contact_note">(Eles enviam e apenas você pode ler)</p>
 
     <form class="form-contato">
-        <input type="text" placeholder="Seu nome" required>
-        <input type="email" placeholder="Seu email" required>
-        <textarea placeholder="Sua mensagem..." required></textarea>
-        <button type="submit">Enviar</button>
+        <input type="text" data-i18n-placeholder="contact_name" placeholder="Seu nome" required>
+        <input type="email" data-i18n-placeholder="contact_email" placeholder="Seu email" required>
+        <textarea data-i18n-placeholder="contact_message" placeholder="Sua mensagem..." required></textarea>
+        <button type="submit" data-i18n="contact_send">Enviar</button>
     </form>
 </section>
 
@@ -324,14 +324,14 @@ if (btnNotif && notifBox) {
         </div>
 
         <div class="footer-links">
-            <a href="livro.html">Livros</a>
-            <a href="games.html">Games</a>
-            <a href="comics.html">Comics</a>
-            <a href="sobre.html">Sobre</a>
+            <a href="livro.html" data-i18n="nav_books">Livros</a>
+            <a href="games.html" data-i18n="nav_games">Games</a>
+            <a href="comics.html" data-i18n="nav_comics">Comics</a>
+            <a href="sobre.html" data-i18n="nav_about">Sobre</a>
         </div>
 
         <div class="footer-social">
-            <p>Redes</p>
+            <p data-i18n="footer_social">Redes</p>
             <a href="#">Instagram</a>
             <a href="#">YouTube</a>
         </div>
@@ -339,11 +339,12 @@ if (btnNotif && notifBox) {
     </div>
 
     <div class="footer-bottom">
-        <p>Todos os direitos reservados.</p>
+        <p data-i18n="footer_rights">Todos os direitos reservados.</p>
     </div>
 </footer>
 
 <script src="updater-ui.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
 

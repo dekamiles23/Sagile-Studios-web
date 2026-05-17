@@ -94,11 +94,11 @@ window.addEventListener("DOMContentLoaded", () => {
   </div>
   <nav class="menu" id="menu">
     <div class="highlight"></div>
-    <a href="livro.html">Livros</a>
-    <a href="games.html">Games</a>
-    <a href="comics.html">Comics</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="novidades.html">Novidades</a>
+    <a href="livro.html" data-i18n="nav_books">Livros</a>
+    <a href="games.html" data-i18n="nav_games">Games</a>
+    <a href="comics.html" data-i18n="nav_comics">Comics</a>
+    <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+    <a href="novidades.html" data-i18n="nav_news">Novidades</a>
   </nav>
   <div class="right-icons">
     <div class="notification-wrapper">
@@ -107,8 +107,8 @@ window.addEventListener("DOMContentLoaded", () => {
         <span class="badge">3</span>
       </div>
       <div class="notif-box" id="notifBox">
-        <p>Nova atualização disponível</p>
-        <p>Capítulo novo lançado</p>
+        <p data-i18n="notif_update">Nova atualização disponível</p>
+        <p data-i18n="notif_chapter">Capítulo novo lançado</p>
       </div>
     </div>
     <a href="faleconosco.html" class="icon-btn"><i data-lucide="message-circle"></i></a>
@@ -129,18 +129,18 @@ window.addEventListener("DOMContentLoaded", () => {
     <h1 class="titulo-livro reveal delay1" id="hTitulo"></h1>
   </div>
   <div class="coluna-info reveal delay2">
-    <p><b>Classificação:</b> <span id="hClassificacao"></span></p>
-    <p><b>Gêneros:</b><br><span id="hGenero"></span></p>
-    <p><b>Plataforma:</b> Sagile Studios</p>
-    <p><b>Formato:</b> Online</p>
+    <p><b data-i18n="story_classification">Classificação:</b> <span id="hClassificacao"></span></p>
+    <p><b data-i18n="story_genres">Gêneros:</b><br><span id="hGenero"></span></p>
+    <p><b data-i18n="story_platform">Plataforma:</b> Sagile Studios</p>
+    <p><b data-i18n="story_format">Formato:</b> Online</p>
   </div>
   <div class="coluna-sinopse reveal delay3">
-    <h2>Sinopse</h2>
+    <h2 data-i18n="story_synopsis">Sinopse</h2>
     <p id="hSinopse"></p>
     <div style="margin-top:30px;">
-      <h2>📚 Capítulos</h2>
+      <h2 data-i18n="story_chapters">📚 Capítulos</h2>
       <div class="capitulos-lista" id="capitulosList"></div>
-      <div id="capEmpty" style="opacity:0.5;font-size:14px;margin-top:10px;display:none;">Nenhum capítulo publicado ainda.</div>
+      <div id="capEmpty" style="opacity:0.5;font-size:14px;margin-top:10px;display:none;" data-i18n="story_no_chapters">Nenhum capítulo publicado ainda.</div>
     </div>
   </div>
 </section>
@@ -152,18 +152,18 @@ window.addEventListener("DOMContentLoaded", () => {
 </section>
 
 <section class="avaliacoes reveal">
-  <h2>Avalie esta obra</h2>
+  <h2 data-i18n="story_rate">Avalie esta obra</h2>
   <div class="nota">
     <div id="estrelas">
       <span data-v="1">★</span><span data-v="2">★</span>
       <span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
     </div>
-    <p id="resultado">Clique nas estrelas</p>
+    <p id="resultado" data-i18n="story_rate_click">Clique nas estrelas</p>
   </div>
 </section>
 
 <!-- BOTÃO INVISÍVEL DEV (canto inferior esquerdo) -->
-<div id="devTrigger" style="position:fixed;bottom:10px;left:10px;width:30px;height:30px;cursor:pointer;z-index:999;"></div>
+<div id="devTrigger" style="position:fixed;bottom:10px;left:10px;width:30px;height:30px;cursor:pointer;z-index:99998;"></div>
 
 <!-- BOTÃO + ADICIONAR CAPÍTULO -->
 <button class="btn-add-hp" id="btnAddCap" style="display:none;" title="Adicionar capítulo">+</button>
@@ -171,29 +171,29 @@ window.addEventListener("DOMContentLoaded", () => {
 <!-- MODAL SENHA -->
 <div class="hp-auth-overlay" id="hpAuthOverlay" style="display:none;">
   <div class="hp-auth-box">
-    <h2>🔒 Acesso Dev</h2>
-    <input type="password" id="hpSenha" placeholder="Senha">
-    <p class="hp-auth-error" id="hpAuthError">Senha incorreta.</p>
-    <button onclick="verificarSenha()">Entrar</button>
+    <h2 data-i18n="hp_dev_title">🔒 Acesso Dev</h2>
+    <input type="password" id="hpSenha" data-i18n-placeholder="hp_dev_pass" placeholder="Senha">
+    <p class="hp-auth-error" id="hpAuthError" data-i18n="hp_dev_wrong">Senha incorreta.</p>
+    <button onclick="verificarSenha()" data-i18n="hp_dev_enter">Entrar</button>
   </div>
 </div>
 
 <!-- MODAL ADICIONAR CAPÍTULO -->
 <div class="cap-modal-overlay" id="capModalOverlay" style="display:none;">
   <div class="cap-modal">
-    <h2>📝 Novo Capítulo</h2>
-    <input type="text" id="capTitulo" placeholder="Título do capítulo (ex: Capítulo 1 - O Início)">
-    <textarea id="capTexto" placeholder="Texto completo do capítulo..."></textarea>
+    <h2 data-i18n="cap_modal_title">📝 Novo Capítulo</h2>
+    <input type="text" id="capTitulo" data-i18n-placeholder="cap_title_placeholder" placeholder="Título do capítulo (ex: Capítulo 1 - O Início)">
+    <textarea id="capTexto" data-i18n-placeholder="cap_text_placeholder" placeholder="Texto completo do capítulo..."></textarea>
     <div class="cap-modal-btns">
-      <button class="cap-btn-cancel" onclick="fecharCapModal()">Cancelar</button>
-      <button class="cap-btn-save" onclick="salvarCapitulo()">Publicar</button>
+      <button class="cap-btn-cancel" onclick="fecharCapModal()" data-i18n="cap_cancel">Cancelar</button>
+      <button class="cap-btn-save" onclick="salvarCapitulo()" data-i18n="cap_publish">Publicar</button>
     </div>
   </div>
 </div>
 
 <!-- MODAL LEITURA -->
 <div class="leitura-overlay" id="leituraOverlay">
-  <button class="leitura-fechar" onclick="fecharLeitura()">✕ Fechar</button>
+  <button class="leitura-fechar" onclick="fecharLeitura()" data-i18n="read_close">✕ Fechar</button>
   <div class="leitura-box">
     <h2 id="leituraTitulo"></h2>
     <p id="leituraTexto"></p>
@@ -361,7 +361,7 @@ function renderCapitulos(caps) {
 async function salvarCapitulo() {
   const titulo = document.getElementById("capTitulo").value.trim();
   const texto = document.getElementById("capTexto").value.trim();
-  if (!titulo || !texto) return alert("Preencha o título e o texto do capítulo.");
+  if (!titulo || !texto) return alert(window.i18n ? window.i18n.t('cap_fill_alert') : 'Preencha o título e o texto do capítulo.');
 
   const btnSalvar = document.querySelector(".cap-btn-save");
   btnSalvar.disabled = true;
@@ -395,7 +395,7 @@ async function salvarCapitulo() {
 }
 
 async function deletarCapitulo(capId) {
-  if (!confirm("Remover este capítulo?")) return;
+  if (!confirm(window.i18n ? window.i18n.t('cap_delete_confirm') : 'Remover este capítulo?')) return;
   try {
     await fetch(`${API}/historias/${storyId}/capitulos/${capId}`, { method: "DELETE" });
   } catch(e) {
@@ -426,6 +426,7 @@ carregarHistoria();
 </script>
 
 <script src="updater-ui.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
 
@@ -436,18 +437,18 @@ carregarHistoria();
       <p>Sagile Studios © 2026</p>
     </div>
     <div class="footer-links">
-      <a href="livro.html">Livros</a>
-      <a href="games.html">Games</a>
-      <a href="comics.html">Comics</a>
-      <a href="sobre.html">Sobre</a>
+      <a href="livro.html" data-i18n="nav_books">Livros</a>
+      <a href="games.html" data-i18n="nav_games">Games</a>
+      <a href="comics.html" data-i18n="nav_comics">Comics</a>
+      <a href="sobre.html" data-i18n="nav_about">Sobre</a>
     </div>
     <div class="footer-social">
-      <p>Redes</p>
+      <p data-i18n="footer_social">Redes</p>
       <a href="#">Instagram</a>
       <a href="#">YouTube</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>Todos os direitos reservados.</p>
+    <p data-i18n="footer_rights">Todos os direitos reservados.</p>
   </div>
 </footer>

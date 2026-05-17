@@ -74,11 +74,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     <nav class="menu" id="menu">
         <div class="highlight"></div>
-        <a href="livro.html">Livros</a>
-        <a href="games.html">Games</a>
-        <a href="comics.html">Comics</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="novidades.html">Novidades</a>
+        <a href="livro.html" data-i18n="nav_books">Livros</a>
+        <a href="games.html" data-i18n="nav_games">Games</a>
+        <a href="comics.html" data-i18n="nav_comics">Comics</a>
+        <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+        <a href="novidades.html" data-i18n="nav_news">Novidades</a>
     </nav>
 
     <div class="right-icons">
@@ -89,8 +89,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 <span class="badge">3</span>
             </div>
             <div class="notif-box" id="notifBox">
-                <p>Nova atualização disponível</p>
-                <p>Capítulo novo lançado</p>
+                <p data-i18n="notif_update">Nova atualização disponível</p>
+                <p data-i18n="notif_chapter">Capítulo novo lançado</p>
             </div>
         </div>
 
@@ -136,7 +136,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         <div class="profile-status">
             <span class="status-dot"></span>
-            <span id="statusLabel">Online</span>
+            <span id="statusLabel" data-i18n="profile_online">Online</span>
         </div>
 
         <div class="profile-nick-wrap">
@@ -172,21 +172,21 @@ window.addEventListener("DOMContentLoaded", () => {
         <div class="profile-stats">
             <div class="stat-box">
                 <span id="statGames">0</span>
-                <label>Jogos</label>
+                <label data-i18n="profile_games">Jogos</label>
             </div>
             <div class="stat-box">
                 <span id="statFav">—</span>
-                <label>Favorito</label>
+                <label data-i18n="profile_fav">Favorito</label>
             </div>
             <div class="stat-box">
                 <span id="statHours">0h</span>
-                <label>Jogado</label>
+                <label data-i18n="profile_hours">Jogado</label>
             </div>
         </div>
 
         <div class="profile-actions">
-            <button class="btn-save" onclick="saveProfile()">💾 Salvar perfil</button>
-            <button class="btn-reset" onclick="resetProfile()">🔄 Redefinir</button>
+            <button class="btn-save" onclick="saveProfile()" data-i18n="profile_save">💾 Salvar perfil</button>
+            <button class="btn-reset" onclick="resetProfile()" data-i18n="profile_reset">🔄 Redefinir</button>
         </div>
 
     </div>
@@ -613,14 +613,14 @@ loadProfile();
         </div>
 
         <div class="footer-links">
-            <a href="livro.html">Livros</a>
-            <a href="games.html">Games</a>
-            <a href="comics.html">Comics</a>
-            <a href="sobre.html">Sobre</a>
+            <a href="livro.html" data-i18n="nav_books">Livros</a>
+            <a href="games.html" data-i18n="nav_games">Games</a>
+            <a href="comics.html" data-i18n="nav_comics">Comics</a>
+            <a href="sobre.html" data-i18n="nav_about">Sobre</a>
         </div>
 
         <div class="footer-social">
-            <p>Redes</p>
+            <p data-i18n="footer_social">Redes</p>
             <a href="#">Instagram</a>
             <a href="#">YouTube</a>
         </div>
@@ -628,11 +628,12 @@ loadProfile();
     </div>
 
     <div class="footer-bottom">
-        <p>Todos os direitos reservados.</p>
+        <p data-i18n="footer_rights">Todos os direitos reservados.</p>
     </div>
 </footer>
 
 <script src="updater-ui.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
 

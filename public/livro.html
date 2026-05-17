@@ -75,11 +75,11 @@ window.addEventListener("DOMContentLoaded", () => {
 <nav class="menu" id="menu">
     <div class="highlight"></div>
 
-    <a href="livro.html">Livros</a>
-    <a href="games.html">Games</a>
-    <a href="comics.html">Comics</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="novidades.html">Novidades</a>
+    <a href="livro.html" data-i18n="nav_books">Livros</a>
+    <a href="games.html" data-i18n="nav_games">Games</a>
+    <a href="comics.html" data-i18n="nav_comics">Comics</a>
+    <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+    <a href="novidades.html" data-i18n="nav_news">Novidades</a>
 </nav>
 
 <div class="right-icons">
@@ -92,8 +92,8 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div class="notif-box" id="notifBox">
-            <p>Nova atualização disponível</p>
-            <p>Capítulo novo lançado</p>
+            <p data-i18n="notif_update">Nova atualização disponível</p>
+            <p data-i18n="notif_chapter">Capítulo novo lançado</p>
         </div>
     </div>
 
@@ -140,14 +140,14 @@ window.addEventListener("DOMContentLoaded", () => {
 <!-- 📚 BANNER LIVROS -->
 <section class="banner-livros">
     <div class="banner-livros-content">
-        <h1>Sessão de Livros</h1>
+        <h1 data-i18n="books_banner_title">Sessão de Livros</h1>
         <p></p>
     </div>
 </section>
 
 <!-- 🔍 PESQUISA (AGORA NO LUGAR CERTO) -->
 <div class="search-area">
-    <input type="text" id="search" placeholder="Pesquisar livros, games, comics...">
+    <input type="text" id="search" data-i18n-placeholder="search_placeholder_full" placeholder="Pesquisar livros, games, comics...">
 </div>
 
 <!-- ✨ LINHA -->
@@ -155,19 +155,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
 <!-- 📖 BOTÃO HISTÓRIAS PARALELAS -->
 <div style="text-align:center; margin: 10px 0 30px;">
-    <a href="historias-paralelas.html" class="btn-historias">📖 Histórias paralelas</a>
+    <a href="historias-paralelas.html" class="btn-historias" data-i18n="books_parallel">📖 Histórias paralelas</a>
 </div>
 
 <!-- 📚 CATÁLOGO (100% ORIGINAL - NÃO ALTERADO) -->
 <section class="catalogo reveal">
 
-    <h1>Livros</h1>
+    <h1 data-i18n="books_title">Livros</h1>
 
-    <p class="subtitulo-catalogo">
+    <p class="subtitulo-catalogo" data-i18n="books_catalog_sub">
         Prepare-se para uma aventura longa de fantasia e ficção científica, aproveite totalmente de nossas histórias.
     </p>
 
-    <h2>🌐 Todos</h2>
+    <h2 data-i18n="books_all">🌐 Todos</h2>
     <div class="grid-livros">
 
         <div class="livro reveal item">
@@ -214,7 +214,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     </div>
 
-    <h2>⭐ Populares</h2>
+    <h2 data-i18n="books_popular">⭐ Populares</h2>
     <div class="grid-livros">
         <div class="livro reveal item">
             <a href="emd.html">
@@ -231,7 +231,7 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
     </div>
 
-    <h2>🆕 Recentes</h2>
+    <h2 data-i18n="books_recent">🆕 Recentes</h2>
     <div class="grid-livros">
         <div class="livro reveal item">
             <a href="attic.html">
@@ -248,7 +248,7 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
     </div>
 
-    <h2>😱 Terror</h2>
+    <h2 data-i18n="books_horror">😱 Terror</h2>
     <div class="grid-livros">
         <div class="livro reveal item">
             <a href="wayston.html">
@@ -265,7 +265,7 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
     </div>
 
-    <h2>⚔️ Ação</h2>
+    <h2 data-i18n="books_action">⚔️ Ação</h2>
     <div class="grid-livros">
         <div class="livro reveal item">
             <a href="emd.html">
@@ -289,7 +289,7 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
     </div>
 
-    <h2>📖 Trilogia</h2>
+    <h2 data-i18n="books_trilogy">📖 Trilogia</h2>
     <div class="grid-livros">
         <div class="livro reveal item">
             <a href="emdtrilogia.html">
@@ -429,6 +429,7 @@ if (btnNotif && notifBox) {
 </script>
 
 <script src="updater-ui.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
 
@@ -441,14 +442,14 @@ if (btnNotif && notifBox) {
         </div>
 
         <div class="footer-links">
-            <a href="livro.html">Livros</a>
-            <a href="games.html">Games</a>
-            <a href="comics.html">Comics</a>
-            <a href="sobre.html">Sobre</a>
+            <a href="livro.html" data-i18n="nav_books">Livros</a>
+            <a href="games.html" data-i18n="nav_games">Games</a>
+            <a href="comics.html" data-i18n="nav_comics">Comics</a>
+            <a href="sobre.html" data-i18n="nav_about">Sobre</a>
         </div>
 
         <div class="footer-social">
-            <p>Redes</p>
+            <p data-i18n="footer_social">Redes</p>
             <a href="#">Instagram</a>
             <a href="#">YouTube</a>
         </div>
@@ -456,7 +457,7 @@ if (btnNotif && notifBox) {
     </div>
 
     <div class="footer-bottom">
-        <p>Todos os direitos reservados.</p>
+        <p data-i18n="footer_rights">Todos os direitos reservados.</p>
     </div>
 </footer>
 

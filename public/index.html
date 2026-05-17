@@ -62,7 +62,7 @@ document.addEventListener('click', function(e) {
 <div id="updateModal" class="update-modal hidden">
   <div class="update-box">
     <div class="update-icon">⬇️</div>
-    <h2>Atualização disponível</h2>
+    <h2 data-i18n="update_title">Atualização disponível</h2>
     <p id="updateVersion"></p>
     <div id="updateNotes" class="update-notes"></div>
 
@@ -72,13 +72,13 @@ document.addEventListener('click', function(e) {
     </div>
 
     <div id="updateActions">
-      <button class="update-btn-primary" onclick="startUpdate()">Baixar e instalar</button>
-      <button class="update-btn-secondary" onclick="document.getElementById('updateModal').classList.add('hidden')">Agora não</button>
+      <button class="update-btn-primary" onclick="startUpdate()" data-i18n="update_download">Baixar e instalar</button>
+      <button class="update-btn-secondary" onclick="document.getElementById('updateModal').classList.add('hidden')" data-i18n="update_later">Agora não</button>
     </div>
 
     <div id="updateReady" class="hidden">
-      <p class="update-ready-msg">✅ Pronto! Reinicie para aplicar.</p>
-      <button class="update-btn-primary" onclick="window.updater.restart()">Reiniciar agora</button>
+      <p class="update-ready-msg" data-i18n="update_ready">✅ Pronto! Reinicie para aplicar.</p>
+      <button class="update-btn-primary" onclick="window.updater.restart()" data-i18n="update_restart">Reiniciar agora</button>
     </div>
   </div>
 </div>
@@ -268,11 +268,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     <nav id="menu" class="menu">
         <div class="highlight"></div>
-        <a href="livro.html">Livros</a>
-        <a href="games.html">Games</a>
-        <a href="comics.html">Comics</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="novidades.html">Novidades</a>
+        <a href="livro.html" data-i18n="nav_books">Livros</a>
+        <a href="games.html" data-i18n="nav_games">Games</a>
+        <a href="comics.html" data-i18n="nav_comics">Comics</a>
+        <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+        <a href="novidades.html" data-i18n="nav_news">Novidades</a>
     </nav>
 
     <div class="right-icons">
@@ -283,8 +283,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 <span class="badge">3</span>
             </div>
             <div class="notif-box" id="notifBox">
-                <p>Nova atualização disponível</p>
-                <p>Capítulo novo lançado</p>
+                <p data-i18n="notif_update">Nova atualização disponível</p>
+                <p data-i18n="notif_chapter">Capítulo novo lançado</p>
             </div>
         </div>
 
@@ -345,15 +345,15 @@ function startUpdate() {
 
 <!-- BANNER -->
 <section class="banner">
-    <h1>Bem-vindo à Sagile Studios</h1>
-    <p>Explorando mundos através de histórias</p>
+    <h1 data-i18n="index_banner_title">Bem-vindo à Sagile Studios</h1>
+    <p data-i18n="index_banner_sub">Explorando mundos através de histórias</p>
 </section>
 
 <div class="search-area">
-    <input type="text" id="search" placeholder="Pesquisar...">
+    <input type="text" id="search" data-i18n-placeholder="search_placeholder" placeholder="Pesquisar...">
 </div>
 
-<h2 class="titulo-secao">Obras</h2>
+<h2 class="titulo-secao" data-i18n="index_works">Obras</h2>
 
 <!-- CARROSSEL -->
 <section class="carrossel">
@@ -412,26 +412,20 @@ function startUpdate() {
 
 <!-- SOBRE -->
 <section class="sobre reveal">
-    <h1>O QUE É A SAGILE STUDIOS?</h1>
-    <p>
-          A Sagile studios é uma empresa fundada por Miles Deka no ano de 2025, já havia resquicios de sua criação desde 2020, o projeto da empresa foi andar para frente nesse ano por agora. A Sagile Studios é uma empresa que distribui webcomics, livros e afins para o público alvo, no momento só há um integrante, futuramente haverá mais atualizações do que será a empresa daqui para frente. Inicialmente teve sua marca registrada na webcomic de Miles Deka, denominada: "Kamai SEN" posteriormente, a marca sendo dona também dos livros do dono. No futuro próximo continuará produzindo e publicando livros, webcomic, animações...
+    <h1 data-i18n="index_about_title">O QUE É A SAGILE STUDIOS?</h1>
+    <p data-i18n="index_about_text">A Sagile studios é uma empresa fundada por Miles Deka no ano de 2025, já havia resquicios de sua criação desde 2020, o projeto da empresa foi andar para frente nesse ano por agora. A Sagile Studios é uma empresa que distribui webcomics, livros e afins para o público alvo, no momento só há um integrante, futuramente haverá mais atualizações do que será a empresa daqui para frente. Inicialmente teve sua marca registrada na webcomic de Miles Deka, denominada: "Kamai SEN" posteriormente, a marca sendo dona também dos livros do dono. No futuro próximo continuará produzindo e publicando livros, webcomic, animações...</p>
 
-<h1>Fundação</h1>
+    <h1 data-i18n="index_foundation_title">Fundação</h1>
+    <p data-i18n="index_foundation_text">A Fundação ocorreu em 2024, a ideia veio de Miles Deka, então se iniciou-se como um rascunho, a intenção era que a empresa assim como a ideia de hoje, seja um estúdio de animações, HQ's, e livros, dentre outros. As obras são distribuídas em vários formatos, em nosso site é possível ler a webcomic, nós estamos atualizando a cada dia mais, e nos tornando cada vez melhores, se alguma pessoa dar sugestão válida, analisaremos a sugestão e iremos debater sobre o caso.</p>
 
-A Fundação ocorreu em 2024, a ideia veio de Miles Deka, então se iniciou-se como um rascunho, a intenção era que a empresa assim como a ideia de hoje, seja um estúdio de animações, HQ's, e livros, dentre outros. As obras são distribuídas em vários formatos, em nosso site é possível ler a webcomic, nós estamos atualizando a cada dia mais, e nos tornando cada vez melhores, se alguma pessoa dar sugestão válida, analisaremos a sugestão e iremos debater sobre o caso.
+    <h1 data-i18n="index_works_title">Obras</h1>
+    <p data-i18n="index_works_text">As obras de Miles Deka estão disponíveis no site, você pode comprar conosco, ou em nossos parceiros. No total atualmente é apenas seis obras disponíveis no site. Futuramente talvez Miles Deka irá construir mais dessas obras, assim que possível.</p>
 
-<h1>Obras</h1>
+    <h1 data-i18n="index_ideas_title">Ideias e projetos</h1>
+    <p data-i18n="index_ideas_text">Temos o enorme desejo de ser uma empresa grande, criar videogames e até trabalhar com filmes, e jogos com captura de movimento. Ainda há muita ideia para mostrar ao público.</p>
 
- As obras de Miles Deka estão disponíveis no site, você pode comprar conosco, ou em nossos parceiros. No total atualmente é apenas seis obras disponíveis no site. Futuramente talvez Miles Deka irá construir mais dessas obras, assim que possível.
-
-<h1>Ideias e projetos</h1>
-
-Temos o enorme desejo de ser uma empresa grande, criar videogames e até trabalhar com filmes, e jogos com captura de movimento. Ainda há muita ideia para mostrar ao público.
-
-<h1>Redes sociais</h1>
-
-Você pode nos seguir no instagram, youtube e dentre outros.
-        </p>
+    <h1 data-i18n="index_social_title">Redes sociais</h1>
+    <p data-i18n="index_social_text">Você pode nos seguir no instagram, youtube e dentre outros.</p>
 </section>
 
 <!-- SCRIPTS -->
@@ -519,28 +513,28 @@ window.addEventListener("load", revealOnScroll);
 <section class="home-news">
 
     <div class="news-header">
-        <h2>Novidades</h2>
+        <h2 data-i18n="index_news_title">Novidades</h2>
         <div class="linha-ps"></div>
-        <a href="novidades.html" class="ver-tudo">Ver tudo →</a>
+        <a href="novidades.html" class="ver-tudo" data-i18n="index_news_see_all">Ver tudo →</a>
     </div>
 
     <div class="news-preview">
 
         <div class="news-card">
-            <h3>Novo capítulo de Kamai SEN</h3>
-            <p>Capítulo 2 já disponível com novas cenas e desenvolvimento.</p>
+            <h3 data-i18n="index_news1_title">Novo capítulo de Kamai SEN</h3>
+            <p data-i18n="index_news1_desc">Capítulo 2 já disponível com novas cenas e desenvolvimento.</p>
             <span>12 Abril 2026</span>
         </div>
 
         <div class="news-card">
-            <h3>Atualização em Em Meu Destino</h3>
-            <p>Nova arte e ajustes na história foram adicionados.</p>
+            <h3 data-i18n="index_news2_title">Atualização em Em Meu Destino</h3>
+            <p data-i18n="index_news2_desc">Nova arte e ajustes na história foram adicionados.</p>
             <span>10 Abril 2026</span>
         </div>
 
         <div class="news-card">
-            <h3>Site atualizado</h3>
-            <p>Melhorias visuais e nova interface AAA implementada.</p>
+            <h3 data-i18n="index_news3_title">Site atualizado</h3>
+            <p data-i18n="index_news3_desc">Melhorias visuais e nova interface AAA implementada.</p>
             <span>08 Abril 2026</span>
         </div>
 
@@ -557,14 +551,14 @@ window.addEventListener("load", revealOnScroll);
         </div>
 
         <div class="footer-links">
-            <a href="livro.html">Livros</a>
-            <a href="games.html">Games</a>
-            <a href="comics.html">Comics</a>
-            <a href="sobre.html">Sobre</a>
+            <a href="livro.html" data-i18n="nav_books">Livros</a>
+            <a href="games.html" data-i18n="nav_games">Games</a>
+            <a href="comics.html" data-i18n="nav_comics">Comics</a>
+            <a href="sobre.html" data-i18n="nav_about">Sobre</a>
         </div>
 
         <div class="footer-social">
-            <p>Redes</p>
+            <p data-i18n="footer_social">Redes</p>
             <a href="#">Instagram</a>
             <a href="#">YouTube</a>
         </div>
@@ -577,11 +571,12 @@ window.addEventListener("load", revealOnScroll);
     </div>
 
     <div class="footer-bottom">
-        <p>Todos os direitos reservados.</p>
+        <p data-i18n="footer_rights">Todos os direitos reservados.</p>
     </div>
 </footer>
 
 <script src="updater-ui.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
 

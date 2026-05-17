@@ -75,11 +75,11 @@ window.addEventListener("DOMContentLoaded", () => {
 <nav class="menu" id="menu">
     <div class="highlight"></div>
 
-    <a href="livro.html">Livros</a>
-    <a href="games.html">Games</a>
-    <a href="comics.html">Comics</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="novidades.html">Novidades</a>
+    <a href="livro.html" data-i18n="nav_books">Livros</a>
+    <a href="games.html" data-i18n="nav_games">Games</a>
+    <a href="comics.html" data-i18n="nav_comics">Comics</a>
+    <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+    <a href="novidades.html" data-i18n="nav_news">Novidades</a>
 </nav>
 
 <div class="right-icons">
@@ -92,8 +92,8 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div class="notif-box" id="notifBox">
-            <p>Nova atualização disponível</p>
-            <p>Capítulo novo lançado</p>
+            <p data-i18n="notif_update">Nova atualização disponível</p>
+            <p data-i18n="notif_chapter">Capítulo novo lançado</p>
         </div>
     </div>
 
@@ -139,15 +139,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
 <!-- 🔍 PESQUISA -->
 <div class="search-area">
-    <input type="text" placeholder="Pesquisar livros, games, comics...">
+    <input type="text" data-i18n-placeholder="search_placeholder_full" placeholder="Pesquisar livros, games, comics...">
 </div>
 
 <!-- CONTEÚDO CENTRAL -->
 <section class="games-content">
 
-    <h1><strong>ECLIPSE-7</strong></h1>
+    <h1 data-i18n="games_title"><strong>ECLIPSE-7</strong></h1>
 
-    <p>
+    <p data-i18n="games_desc">
         O Eclipse-7 tem o intuito de trazer jogos retrô, antigos, e alguns modernos 
         para dentro da plataforma. O objetivo é fazer o usuário entreter com nossas utilidades, e usar bastante a plataforma para jogar e fazer outras coisas. Estamos atualizando a cada dia que passa, as atualizações são automáticas, o Eclipse-7 é um console futuro com muito potencial de ser um dos melhores já criados, ele irá aceitar jogos indies e etc.
     </p>
@@ -155,7 +155,7 @@ window.addEventListener("DOMContentLoaded", () => {
    <!-- SELECTOR DE VERSÃO (estilo stable) -->
 <div class="version-box">
 
-    <label>Versão:</label>
+    <label data-i18n="games_version">Versão:</label>
 
     <select id="versionSelect">
 
@@ -165,11 +165,11 @@ window.addEventListener("DOMContentLoaded", () => {
     </select>
 
     <!-- BOTÃO DOWNLOAD -->
-    <button id="downloadBtn">Download</button>
+    <button id="downloadBtn" data-i18n="games_download_btn">Download</button>
 
 </div>
 
-    <p>
+    <p data-i18n="games_note">
         Aproveite a versão selecionada, pois novas atualizações chegarão em breve.
     </p>
 
@@ -315,14 +315,14 @@ button.addEventListener("click", () => {
         </div>
 
         <div class="footer-links">
-            <a href="livro.html">Livros</a>
-            <a href="games.html">Games</a>
-            <a href="comics.html">Comics</a>
-            <a href="sobre.html">Sobre</a>
+            <a href="livro.html" data-i18n="nav_books">Livros</a>
+            <a href="games.html" data-i18n="nav_games">Games</a>
+            <a href="comics.html" data-i18n="nav_comics">Comics</a>
+            <a href="sobre.html" data-i18n="nav_about">Sobre</a>
         </div>
 
         <div class="footer-social">
-            <p>Redes</p>
+            <p data-i18n="footer_social">Redes</p>
             <a href="#">Instagram</a>
             <a href="#">YouTube</a>
         </div>
@@ -330,11 +330,12 @@ button.addEventListener("click", () => {
     </div>
 
     <div class="footer-bottom">
-        <p>Todos os direitos reservados.</p>
+        <p data-i18n="footer_rights">Todos os direitos reservados.</p>
     </div>
 </footer>
 
 <script src="updater-ui.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
 

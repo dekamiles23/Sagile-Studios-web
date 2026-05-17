@@ -73,11 +73,11 @@ window.addEventListener("DOMContentLoaded", () => {
 <nav class="menu" id="menu">
     <div class="highlight"></div>
 
-    <a href="livro.html">Livros</a>
-    <a href="games.html">Games</a>
-    <a href="comics.html">Comics</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="novidades.html">Novidades</a>
+    <a href="livro.html" data-i18n="nav_books">Livros</a>
+    <a href="games.html" data-i18n="nav_games">Games</a>
+    <a href="comics.html" data-i18n="nav_comics">Comics</a>
+    <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+    <a href="novidades.html" data-i18n="nav_news">Novidades</a>
 </nav>
 
 <div class="right-icons">
@@ -90,8 +90,8 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div class="notif-box" id="notifBox">
-            <p>Nova atualização disponível</p>
-            <p>Capítulo novo lançado</p>
+            <p data-i18n="notif_update">Nova atualização disponível</p>
+            <p data-i18n="notif_chapter">Capítulo novo lançado</p>
         </div>
     </div>
 
@@ -125,15 +125,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
 <!-- 🔍 PESQUISA -->
 <div class="search-area">
-<input type="text" placeholder="Pesquisar livros, games, comics...">
+<input type="text" data-i18n-placeholder="search_placeholder_full" placeholder="Pesquisar livros, games, comics...">
 </div>
 
 <!-- 📚 CATÁLOGO -->
 <section class="catalogo reveal">
 
-<h1>Comics</h1>
+<h1 data-i18n="comics_title">Comics</h1>
 
-<p class="subtitulo-catalogo">
+<p class="subtitulo-catalogo" data-i18n="comics_sub">
 Uma aventura lhe aguarda, nossas história em quadrinhos irá transformar seu lazer em algo explorativo e aventureiro.
 </p>
 
@@ -164,14 +164,14 @@ Uma aventura lhe aguarda, nossas história em quadrinhos irá transformar seu la
 </div>
 
 <div class="footer-links">
-<a href="livro.html">Livros</a>
-<a href="games.html">Games</a>
-<a href="comics.html">Comics</a>
-<a href="sobre.html">Sobre</a>
+<a href="livro.html" data-i18n="nav_books">Livros</a>
+<a href="games.html" data-i18n="nav_games">Games</a>
+<a href="comics.html" data-i18n="nav_comics">Comics</a>
+<a href="sobre.html" data-i18n="nav_about">Sobre</a>
 </div>
 
 <div class="footer-social">
-<p>Redes</p>
+<p data-i18n="footer_social">Redes</p>
 <a href="#">Instagram</a>
 <a href="#">YouTube</a>
 </div>
@@ -179,7 +179,7 @@ Uma aventura lhe aguarda, nossas história em quadrinhos irá transformar seu la
 </div>
 
 <div class="footer-bottom">
-<p>Todos os direitos reservados.</p>
+<p data-i18n="footer_rights">Todos os direitos reservados.</p>
 </div>
 
 </footer>
@@ -288,6 +288,7 @@ if (btnNotif && notifBox) {
 </script>
 
 <script src="updater-ui.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
 
