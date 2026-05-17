@@ -2496,3 +2496,57 @@ background-position:center;
     max-width: 100%;
   }
 }
+
+/* ========================= */
+/* MENU DESKTOP + MOBILE FIX */
+/* ========================= */
+
+/* desktop: nav centralizado no header via position absolute */
+#menu {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 1001;
+  pointer-events: auto;
+}
+
+/* mobile: esconde o nav desktop e mostra como dropdown */
+@media (max-width: 768px) {
+  #menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    background: rgba(5, 5, 20, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 16px;
+    gap: 8px;
+    z-index: 1000;
+    box-sizing: border-box;
+    display: none;
+  }
+
+  #menu.active {
+    display: flex !important;
+  }
+
+  #menu a {
+    margin: 0;
+    text-align: center;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #menu .highlight { display: none; }
+}
