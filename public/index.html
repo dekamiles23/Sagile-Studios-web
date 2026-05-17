@@ -286,7 +286,7 @@ window.addEventListener("DOMContentLoaded", () => {
             <span class="badge" id="update-badge" style="background:#7a5cff;display:none;">!</span>
         </a>
 
-        <div class="menu-toggle" onclick="toggleMenu(event)">☰</div>
+        <div class="menu-toggle" onclick="this.textContent=this.textContent==='☰'?'✕':'☰'; var m=document.getElementById('menu'); m.style.display=m.style.display==='flex'?'none':'flex'; m.style.flexDirection='column'; m.style.position='fixed'; m.style.top='60px'; m.style.left='0'; m.style.width='100%'; m.style.background='rgba(5,5,20,0.97)'; m.style.padding='16px'; m.style.zIndex='9999'; m.style.gap='8px'; m.style.boxSizing='border-box';">☰</div>
 
     </div>
 
