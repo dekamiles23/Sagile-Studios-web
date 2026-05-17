@@ -22,19 +22,13 @@
     document.documentElement.lang = currentLang;
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.dataset.i18n;
-      el.textContent = t(key);
+      el.textContent = t(el.dataset.i18n);
     });
 
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       el.placeholder = t(el.dataset.i18nPlaceholder);
     });
 
-    document.querySelectorAll('[data-i18n-html]').forEach(el => {
-      el.innerHTML = t(el.dataset.i18nHtml);
-    });
-
-    // Atualiza label do botão
     const btn = document.getElementById('langToggleBtn');
     if (btn) btn.textContent = LANGS[currentLang];
   }
