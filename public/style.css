@@ -2637,3 +2637,26 @@ background-position:center;
   nav#menu { display: none !important; }
   nav#menu.active { display: flex !important; }
 }
+
+/* ========================= */
+/* MENU TOGGLE - REGRA FINAL */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px !important;
+    color: white !important;
+    cursor: pointer !important;
+    padding: 6px 10px !important;
+    border-radius: 6px !important;
+    background: rgba(255,255,255,0.08) !important;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: 9999 !important;
+    position: relative !important;
+    pointer-events: all !important;
+  }
+}
