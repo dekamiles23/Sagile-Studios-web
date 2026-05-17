@@ -241,94 +241,83 @@ window.addEventListener("DOMContentLoaded", () => {
 <!-- MENU -->
 <header>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-
     <div class="logo">
         <a href="index.html">
             <img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
         </a>
     </div>
 
-    <div class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('active')">☰</div>
+    <nav id="menu" class="menu">
+        <div class="highlight"></div>
+        <a href="livro.html">Livros</a>
+        <a href="games.html">Games</a>
+        <a href="comics.html">Comics</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="novidades.html">Novidades</a>
+    </nav>
 
-     <div class="right-icons">
+    <div class="right-icons">
 
-  <!-- NOTIFICAÇÃO -->
-  <div class="notification-wrapper">
-    <div class="icon-btn" onclick="toggleNotif()">
-      <i data-lucide="bell"></i>
-      <span class="badge">3</span>
+        <div class="notification-wrapper">
+            <div class="icon-btn" onclick="toggleNotif()">
+                <i data-lucide="bell"></i>
+                <span class="badge">3</span>
+            </div>
+            <div class="notif-box" id="notifBox">
+                <p>Nova atualização disponível</p>
+                <p>Capítulo novo lançado</p>
+            </div>
+        </div>
+
+        <a href="registro.html" class="icon-btn">
+            <img id="userAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSI0Ii8+PC9zdmc+" style="width:28px;height:28px;border-radius:50%;object-fit:cover;pointer-events:none;">
+        </a>
+
+        <a href="faleconosco.html" class="icon-btn">
+            <i data-lucide="message-circle"></i>
+        </a>
+
+        <a href="download.html" class="icon-btn">
+            <i data-lucide="download"></i>
+        </a>
+
+        <a href="#" class="icon-btn" id="update-btn" style="display:none;position:relative;">
+            <i data-lucide="arrow-down-circle"></i>
+            <span class="badge" id="update-badge" style="background:#7a5cff;display:none;">!</span>
+        </a>
+
+        <div class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('active')">☰</div>
+
     </div>
 
-    <div class="notif-box" id="notifBox">
-      <p>Nova atualização disponível</p>
-      <p>Capítulo novo lançado</p>
-    </div>
-  </div>
-
- <div class="user-area">
-    <a href="registro.html" class="icon-btn">
-        <img id="userAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSI0Ii8+PC9zdmc+" style="width:28px;height:28px;border-radius:50%;object-fit:cover;pointer-events:none;">
-    </a>
-</div>
-
-<a href="faleconosco.html" class="icon-btn">
-        <i data-lucide="message-circle"></i>
-    </a>
-
-       <!-- ⬇️ DOWNLOAD -->
-    <a href="download.html" class="icon-btn">
-        <i data-lucide="download"></i>
-    </a>
-
-   <!-- ⬇️ Update -->
-<a href="#" class="icon-btn" id="update-btn" style="display:none;position:relative;">
-    <i data-lucide="arrow-down-circle"></i>
-    <span class="badge" id="update-badge" style="background:#7a5cff;display:none;">!</span>
-</a>
+</header>
 
 <script>
 window.addEventListener("DOMContentLoaded", () => {
   lucide.createIcons();
 
-  const isElectron = window.electronAPI?.isElectron === true;
-  const updateBtn  = document.getElementById("update-btn");
+  const updateBtn = document.getElementById("update-btn");
   if (updateBtn) updateBtn.style.display = "none";
 
-  function toggleNotif() {
-    const box = document.getElementById("notifBox");
-    if (box) box.classList.toggle("active");
-  }
-  window.toggleNotif = toggleNotif;
+  window.toggleNotif = function() {
+    document.getElementById("notifBox").classList.toggle("active");
+  };
 
   document.addEventListener("click", function(e) {
     if (!e.target.closest(".notification-wrapper")) {
-      const box = document.getElementById("notifBox");
-      if (box) box.classList.remove("active");
+      document.getElementById("notifBox").classList.remove("active");
     }
   });
 });
 
 function startUpdate() {
   const actions = document.getElementById("updateActions");
-  const bar     = document.getElementById("updateProgress");
+  const bar = document.getElementById("updateProgress");
   if (actions) actions.classList.add("hidden");
-  if (bar)     bar.classList.remove("hidden");
+  if (bar) bar.classList.remove("hidden");
   if (window.updater) window.updater.downloadUpdate();
 }
 </script>
-
-</header>
-
-<!-- MENU MOBILE DROPDOWN -->
-<nav id="menu" class="menu">
-    <div class="highlight"></div>
-    <a href="livro.html">Livros</a>
-    <a href="games.html">Games</a>
-    <a href="comics.html">Comics</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="novidades.html">Novidades</a>
-</nav>
 
 <!-- BANNER -->
 <section class="banner">

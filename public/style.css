@@ -2550,3 +2550,80 @@ background-position:center;
 
   #menu .highlight { display: none; }
 }
+
+/* ========================= */
+/* HEADER MOBILE FINAL FIX   */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+
+  /* esconde nav desktop */
+  header nav#menu {
+    display: none !important;
+  }
+
+  /* right-icons: mostra só o toggle */
+  .right-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* esconde ícones no mobile, mantém só o toggle */
+  .right-icons .notification-wrapper,
+  .right-icons .user-area,
+  .right-icons a.icon-btn {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex !important;
+    font-size: 26px;
+    cursor: pointer;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* menu dropdown fora do header */
+  nav#menu.active {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 60px; left: 0;
+    width: 100%;
+    background: rgba(5, 5, 20, 0.97);
+    backdrop-filter: blur(20px);
+    padding: 16px;
+    gap: 8px;
+    z-index: 999;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(122,92,255,0.3);
+  }
+
+  nav#menu.active a {
+    margin: 0;
+    text-align: center;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  nav#menu .highlight { display: none !important; }
+}
