@@ -308,12 +308,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
         <div class="menu-toggle" id="menuToggle">☰</div>
 
-        <!-- SELETOR DE IDIOMA -->
-        <select id="langSelector" onchange="window.i18n.setLang(this.value); location.reload();" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:4px 8px;font-size:13px;cursor:pointer;">
-          <option value="pt-br">🇧🇷 PT</option>
-          <option value="en-US">🇺🇸 EN</option>
-        </select>
-
     </div>
 
 </header>
@@ -585,6 +579,12 @@ window.addEventListener("load", revealOnScroll);
 
     <div class="footer-bottom">
         <p data-i18n="footer.rights">Todos os direitos reservados.</p>
+        <div style="margin-top:12px;">
+          <select id="langSelector" onchange="window.i18n.setLang(this.value); location.reload();">
+            <option value="pt-br">🇧🇷 Português</option>
+            <option value="en-US">🇺🇸 English</option>
+          </select>
+        </div>
     </div>
 </footer>
 
