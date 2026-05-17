@@ -26,7 +26,32 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
 </head>
-<body> 
+<body>
+
+<script>
+// MENU TOGGLE - captura antes de qualquer outro listener
+document.addEventListener('click', function(e) {
+  var toggle = document.getElementById('menuToggle');
+  if (toggle && (e.target === toggle || toggle.contains(e.target))) {
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    var menu = document.getElementById('menu');
+    var aberto = menu.style.display === 'flex';
+    menu.style.display = aberto ? 'none' : 'flex';
+    menu.style.flexDirection = 'column';
+    menu.style.position = 'fixed';
+    menu.style.top = '60px';
+    menu.style.left = '0';
+    menu.style.width = '100%';
+    menu.style.background = 'rgba(5,5,20,0.97)';
+    menu.style.padding = '16px';
+    menu.style.zIndex = '9999';
+    menu.style.gap = '8px';
+    menu.style.boxSizing = 'border-box';
+    toggle.textContent = aberto ? '☰' : '✕';
+  }
+}, true); // true = capture phase, executa antes de tudo
+</script>
 
     
 
@@ -286,7 +311,7 @@ window.addEventListener("DOMContentLoaded", () => {
             <span class="badge" id="update-badge" style="background:#7a5cff;display:none;">!</span>
         </a>
 
-        <div class="menu-toggle" onclick="this.textContent=this.textContent==='☰'?'✕':'☰'; var m=document.getElementById('menu'); m.style.display=m.style.display==='flex'?'none':'flex'; m.style.flexDirection='column'; m.style.position='fixed'; m.style.top='60px'; m.style.left='0'; m.style.width='100%'; m.style.background='rgba(5,5,20,0.97)'; m.style.padding='16px'; m.style.zIndex='9999'; m.style.gap='8px'; m.style.boxSizing='border-box';">☰</div>
+        <div class="menu-toggle" id="menuToggle">☰</div>
 
     </div>
 
