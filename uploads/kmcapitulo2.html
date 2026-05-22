@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kamai SEN</title>
+
+<link rel="icon" href="https://i.ibb.co/GvPc7F82/Favicon.png">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body class="cap2">
+    
+<audio id="bg-music" autoplay loop>
+  <source src="musicbg.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="click-sound" src="button1.mp3"></audio>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
+
+  music.volume = 0.03;
+
+  const startMusic = () => {
+    music.play().catch(err => {
+          });
+  };
+
+  startMusic();
+
+  document.addEventListener("click", () => {
+    startMusic();
+  });
+});
+</script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  function playClick() {
+    const audio = new Audio("button1.mp3");
+    audio.volume = 0.3;
+    audio.play().catch(() => {});
+  }
+
+  document.querySelectorAll("a, button, .icon-btn").forEach(el => {
+    el.addEventListener("click", playClick);
+  });
+
+});
+</script>
+
+<!-- TRANSIÇÃO -->
+<div class="transition"></div>
+
+<!-- NEVE -->
+<div class="snow-container"></div>
+
+<!-- HEADER PADRÃO -->
+<header>
+
+<div class="logo">
+<a href="index.html">
+<img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
+</a>
+</div>
+
+<nav class="menu" id="menu">
+    <div class="highlight"></div>
+
+    <a href="livro.html">Livros</a>
+    <a href="games.html">Games</a>
+    <a href="comics.html">Comics</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="novidades.html">Novidades</a>
+</nav>
+
+<div class="right-icons">
+
+    <!-- NOTIFICAÇÃO -->
+    <div class="notification-wrapper">
+        <div class="icon-btn" onclick="toggleNotif()">
+            <i data-lucide="bell"></i>
+            <span class="badge">3</span>
+        </div>
+
+        <div class="notif-box" id="notifBox">
+            <p>Nova atualização disponível</p>
+            <p>Capítulo novo lançado</p>
+        </div>
+    </div>
+
+    <!-- FALE CONOSCO -->
+    <a href="faleconosco.html" class="icon-btn">
+        <i data-lucide="message-circle"></i>
+    </a>
+
+    <!-- USUÁRIO -->
+    <a href="registro.html" class="icon-btn">
+        <img id="userAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSI0Ii8+PC9zdmc+" style="width:28px;height:28px;border-radius:50%;object-fit:cover;pointer-events:none;">
+    </a>
+
+    <!-- DOWNLOAD -->
+    <a href="download.html" class="icon-btn">
+        <i data-lucide="download"></i>
+    </a>
+
+<<<<<<< HEAD
+=======
+    <!-- UPDATE -->
+    <a href="#" class="icon-btn" id="update-btn" style="display:none;">
+        <i data-lucide="arrow-down-circle"></i>
+    </a>
+
+>>>>>>> 758f1dc (debug deploy)
+    <div class="menu-toggle">☰</div>
+
+</div>
+
+</header>
+
+</div>
+
+    <nav class="menu" id="menu">
+        <div class="highlight"></div>
+
+<a href="livro.html">Livros</a>
+<a href="games.html">Games</a>
+<a href="comics.html">Comics</a>
+<a href="sobre.html">Sobre</a>
+<a href="novidades.html">Novidades</a>
+</nav>
+
+</header>
+
+<div class="divider"></div>
+
+<section class="leitor">
+<div class="grid-comic">
+
+<img src="https://i.ibb.co/5Xj2V6RG/PAG-1.jpg" onclick="abrirZoom(this)">
+<img src="https://i.ibb.co/QjJwrt0C/PAG-2.jpg" onclick="abrirZoom(this)">
+<img src="https://i.ibb.co/W469H73K/PAG-3.jpg" onclick="abrirZoom(this)">
+<img src="https://i.ibb.co/d0ghhm6M/PAG-4.jpg" onclick="abrirZoom(this)">
+<img src="https://i.ibb.co/YTq5x0Fz/PAG-5.jpg" onclick="abrirZoom(this)">
+<img src="https://i.ibb.co/mVbpYCfY/PAG-6.jpg" onclick="abrirZoom(this)">
+<img src="https://i.ibb.co/cSNRKmvS/PAG-7.jpg" onclick="abrirZoom(this)">
+<img src="https://i.ibb.co/23x5Fmd5/PAG-8.jpg" onclick="abrirZoom(this)">
+<img src="https://i.ibb.co/x8DpWQLq/PAG-9.jpg" onclick="abrirZoom(this)">
+<img src="https://i.ibb.co/qLC1yzDC/PAG-10.jpg" onclick="abrirZoom(this)">
+
+</div>
+</section>
+
+<!-- ZOOM -->
+<div id="zoom" class="zoom" onclick="fecharZoom()">
+
+    <button class="nav prev" onclick="event.stopPropagation(); anterior()">❮</button>
+
+    <img id="zoomImg" onclick="event.stopPropagation()">
+
+    <button class="nav next" onclick="event.stopPropagation(); proxima()">❯</button>
+
+</div>
+
+<footer class="footer">
+<div class="footer-container">
+
+<div class="footer-logo">
+<img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
+<p>Sagile Studios © 2026</p>
+</div>
+
+<div class="footer-links">
+<a href="livro.html">Livros</a>
+<a href="games.html">Games</a>
+<a href="comics.html">Comics</a>
+<a href="sobre.html">Sobre</a>
+</div>
+
+<div class="footer-social">
+<p>Redes</p>
+<a href="#">Instagram</a>
+<a href="#">YouTube</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<p>Todos os direitos reservados.</p>
+</div>
+</footer>
+
+<script>
+
+const zoom = document.getElementById("zoom");
+const zoomImg = document.getElementById("zoomImg");
+
+let imagens = document.querySelectorAll(".grid-comic img");
+let indexAtual = 0;
+
+let scale = 2;
+let isDragging = false;
+let startX, startY;
+let translateX = 0;
+let translateY = 0;
+
+function abrirZoom(img) {
+    zoom.style.display = "flex";
+
+    imagens = document.querySelectorAll(".grid-comic img");
+    indexAtual = Array.from(imagens).indexOf(img);
+
+    zoomImg.src = imagens[indexAtual].src;
+
+    translateX = 0;
+    translateY = 0;
+
+    // 🔥 FIT NA TELA (sem zoom inicial)
+    scale = Math.min(
+        window.innerWidth / img.naturalWidth,
+        window.innerHeight / img.naturalHeight
+    );
+
+    // garante que nunca fique menor que 1 (opcional)
+    if (scale > 1) scale = 1;
+
+    updateTransform();
+}
+
+function fecharZoom() {
+    zoom.style.display = "none";
+}
+
+function proxima() {
+    if (indexAtual < imagens.length - 1) {
+        indexAtual++;
+        trocarImagem();
+    }
+}
+
+function anterior() {
+    if (indexAtual > 0) {
+        indexAtual--;
+        trocarImagem();
+    }
+}
+
+function trocarImagem() {
+    zoomImg.src = imagens[indexAtual].src;
+
+    scale = 1.2;
+    translateX = 0;
+    translateY = 0;
+
+    updateTransform();
+}
+
+zoom.addEventListener("wheel", (e) => {
+    e.preventDefault();
+
+    if (e.deltaY < 0) scale += 0.2;
+    else {
+        scale -= 0.2;
+        if (scale < 1) scale = 1;
+    }
+
+    updateTransform();
+});
+
+zoomImg.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.clientX - translateX;
+    startY = e.clientY - translateY;
+    zoomImg.style.cursor = "grabbing";
+});
+
+window.addEventListener("mouseup", () => {
+    isDragging = false;
+    zoomImg.style.cursor = "grab";
+});
+
+lucide.createIcons();
+
+// NOTIFICAÇÃO
+function toggleNotif() {
+    const box = document.getElementById("notifBox");
+    box.classList.toggle("active");
+}
+
+// fechar clicando fora
+document.addEventListener("click", function(e) {
+    if (!e.target.closest(".notification-wrapper")) {
+        document.getElementById("notifBox").classList.remove("active");
+    }
+});
+
+window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+
+    translateX = e.clientX - startX;
+    translateY = e.clientY - startY;
+
+    updateTransform();
+});
+
+function updateTransform() {
+    zoomImg.style.transform =
+        `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+}
+
+/// teclado
+document.addEventListener("keydown", (e) => {
+    if (zoom.style.display !== "flex") return;
+
+    if (e.key === "ArrowRight") proxima();
+    if (e.key === "ArrowLeft") anterior();
+    if (e.key === "Escape") fecharZoom();
+});
+
+// 🔔 NOTIFICAÇÕES
+const btnNotif = document.getElementById("btnNotif");
+const notifBox = document.getElementById("notifBox");
+
+if (btnNotif && notifBox) {
+
+    // abrir/fechar
+    btnNotif.addEventListener("click", () => {
+        notifBox.classList.toggle("active");
+    });
+
+    // fechar clicando fora
+    document.addEventListener("click", (e) => {
+        if (!btnNotif.contains(e.target) && !notifBox.contains(e.target)) {
+            notifBox.classList.remove("active");
+        }
+    });
+
+}
+
+</script>
+
+<script src="updater-ui.js"></script>
+</body>
+</html>
+

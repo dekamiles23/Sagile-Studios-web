@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Contato - Sagile Studios</title>
+
+    <link rel="icon" href="https://i.ibb.co/GvPc7F82/Favicon.png">
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .contato-page {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 30px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .contato-page h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .contato-page p {
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .redes {
+            margin-bottom: 30px;
+        }
+
+        .redes a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .redes a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .form-contato {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-contato input,
+        .form-contato textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+
+        .form-contato textarea {
+            min-height: 120px;
+            resize: none;
+        }
+
+        .form-contato button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #00aaff;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .form-contato button:hover {
+            background: #0088cc;
+        }
+    </style>
+</head>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<body>
+
+ <audio id="bg-music" autoplay loop>
+  <source src="musicbg.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="click-sound" src="button1.mp3"></audio>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
+
+  music.volume = 0.03;
+
+  const startMusic = () => {
+    music.play().catch(err => {
+          });
+  };
+
+  startMusic();
+
+  document.addEventListener("click", () => {
+    startMusic();
+  });
+});
+</script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  function playClick() {
+    const audio = new Audio("button1.mp3");
+    audio.volume = 0.3;
+    audio.play().catch(() => {});
+  }
+
+  document.querySelectorAll("a, button, .icon-btn").forEach(el => {
+    el.addEventListener("click", playClick);
+  });
+
+});
+</script>
+
+<!-- TRANSIÇÃO -->
+<div class="transition"></div>
+
+<!-- NEVE -->
+<div class="snow-container"></div>
+
+<!-- HEADER PADRÃO -->
+<header>
+
+<div class="logo">
+<a href="index.html">
+<img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
+</a>
+</div>
+
+<nav class="menu" id="menu">
+    <div class="highlight"></div>
+
+    <a href="livro.html">Livros</a>
+    <a href="games.html">Games</a>
+    <a href="comics.html">Comics</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="novidades.html">Novidades</a>
+</nav>
+
+<div class="right-icons">
+
+    <!-- NOTIFICAÇÃO -->
+    <div class="notification-wrapper">
+        <div class="icon-btn" onclick="toggleNotif()">
+            <i data-lucide="bell"></i>
+            <span class="badge">3</span>
+        </div>
+
+        <div class="notif-box" id="notifBox">
+            <p>Nova atualização disponível</p>
+            <p>Capítulo novo lançado</p>
+        </div>
+    </div>
+
+    <!-- FALE CONOSCO -->
+    <a href="faleconosco.html" class="icon-btn">
+        <i data-lucide="message-circle"></i>
+    </a>
+
+    <!-- USUÁRIO -->
+    <a href="registro.html" class="icon-btn">
+        <img id="userAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSI0Ii8+PC9zdmc+" style="width:28px;height:28px;border-radius:50%;object-fit:cover;pointer-events:none;">
+    </a>
+
+    <!-- DOWNLOAD -->
+    <a href="download.html" class="icon-btn">
+        <i data-lucide="download"></i>
+    </a>
+
+<<<<<<< HEAD
+=======
+    <!-- UPDATE -->
+    <a href="#" class="icon-btn" id="update-btn" style="display:none;">
+        <i data-lucide="arrow-down-circle"></i>
+    </a>
+
+>>>>>>> 758f1dc (debug deploy)
+    <div class="menu-toggle">☰</div>
+
+</div>
+
+</header>
+
+</div>
+
+    <nav class="menu" id="menu">
+        <div class="highlight"></div>
+
+<a href="livro.html">Livros</a>
+<a href="games.html">Games</a>
+<a href="comics.html">Comics</a>
+<a href="sobre.html">Sobre</a>
+<a href="novidades.html">Novidades</a>
+</nav>
+
+</header>
+
+<div class="divider"></div>
+
+<!-- ✅ SEU CORPO (INTACTO) -->
+<section class="contato-page">
+    <h1>Fale conosco</h1>
+    <p>Envie sugestões ou reporte problemas</p>
+
+    <div class="redes">
+        <h2>Nossas redes sociais</h2>
+        <a href="https://www.instagram.com/sagilestudios/" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@milesdekaofc" target="_blank">YouTube</a>
+    </div>
+
+    <h2>Sugestões</h2>
+    <p>(Eles enviam e apenas você pode ler)</p>
+
+    <form class="form-contato">
+        <input type="text" placeholder="Seu nome" required>
+        <input type="email" placeholder="Seu email" required>
+        <textarea placeholder="Sua mensagem..." required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+<!-- SCRIPTS -->
+<script>
+
+// ❄️ NEVE
+const container = document.querySelector(".snow-container");
+
+if (container) {
+    for (let i = 0; i < 50; i++) {
+        const flake = document.createElement("div");
+        flake.classList.add("snowflake");
+        flake.innerHTML = "•";
+
+        flake.style.left = Math.random() * 100 + "vw";
+        flake.style.animationDuration = (5 + Math.random() * 5) + "s";
+        flake.style.fontSize = (5 + Math.random() * 10) + "px";
+
+        container.appendChild(flake);
+    }
+}
+
+// 📱 MENU
+document.querySelector(".menu-toggle").onclick = () => {
+    document.getElementById("menu").classList.toggle("active");
+};
+
+// 🔵 HIGHLIGHT
+const menu = document.querySelector("#menu");
+const highlight = menu.querySelector(".highlight");
+const links = menu.querySelectorAll("a");
+
+function moveHighlight(el) {
+    const rect = el.getBoundingClientRect();
+    const menuRect = menu.getBoundingClientRect();
+
+    highlight.style.width = rect.width + "px";
+    highlight.style.left = (rect.left - menuRect.left) + "px";
+}
+
+links.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+        moveHighlight(link);
+    });
+});
+
+lucide.createIcons();
+
+// NOTIFICAÇÃO
+function toggleNotif() {
+    const box = document.getElementById("notifBox");
+    box.classList.toggle("active");
+}
+
+// fechar clicando fora
+document.addEventListener("click", function(e) {
+    if (!e.target.closest(".notification-wrapper")) {
+        document.getElementById("notifBox").classList.remove("active");
+    }
+});
+
+// 🔔 NOTIFICAÇÕES
+const btnNotif = document.getElementById("btnNotif");
+const notifBox = document.getElementById("notifBox");
+
+if (btnNotif && notifBox) {
+
+    // abrir/fechar
+    btnNotif.addEventListener("click", () => {
+        notifBox.classList.toggle("active");
+    });
+
+    // fechar clicando fora
+    document.addEventListener("click", (e) => {
+        if (!btnNotif.contains(e.target) && !notifBox.contains(e.target)) {
+            notifBox.classList.remove("active");
+        }
+    });
+
+}
+
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-logo">
+            <img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
+            <p>Sagile Studios © 2026</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="livro.html">Livros</a>
+            <a href="games.html">Games</a>
+            <a href="comics.html">Comics</a>
+            <a href="sobre.html">Sobre</a>
+        </div>
+
+        <div class="footer-social">
+            <p>Redes</p>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="updater-ui.js"></script>
+</body>
+</html>
+

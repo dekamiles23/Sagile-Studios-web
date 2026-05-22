@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta name="google-site-verification" content="kpcXc4ykNqkOWujZeiIkckVAfrj58qgK_PN90QdzKFQ" />
+    <meta charset="UTF-8">
+<title>Sagile Studios - Estúdio Criativo de Animações, Quadrinhos e Livros</title>
+
+    <link rel="icon" href="https://i.ibb.co/GvPc7F82/Favicon.png">
+    <link rel="stylesheet" href="style.css">
+
+  <!-- Open Graph (Facebook, WhatsApp, Discord, etc) -->
+  <meta property="og:title" content="Sagile Studios Oficial">
+  <meta name="description" content="Sagile Studios é um estúdio de animações, quadrinhos e livros variados. Explore histórias como Kamai SEN e Em Meu Destino.">
+  <meta property="og:image" content="https://i.ibb.co/yFdkmtrW/banner-Sagile.jpg">
+  <meta property="og:url" content="https://dekamiles23.github.io/Sagile-Studios/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter (opcional, mas bom) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sagile Studios Oficial">
+ <meta name="twitter:description" content="Site Oficial da Sagile Studios">
+  <meta name="twitter:image" content="https://i.ibb.co/yFdkmtrW/banner-Sagile.jpg">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body> 
+
+    
+
+    <video id="video" autoplay loop></video>
+
+<script>
+  if (window.api && window.api.getVideoPath) {
+    const video = document.getElementById("video");
+    video.src = window.api.getVideoPath();
+  }
+</script>
+
+
+<div id="updateModal" class="update-modal hidden">
+  <div class="update-box">
+    <div class="update-icon">⬇️</div>
+    <h2>Atualização disponível</h2>
+    <p id="updateVersion"></p>
+    <div id="updateNotes" class="update-notes"></div>
+
+    <div id="updateProgress" class="update-progress hidden">
+      <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+      <span id="progressText">0%</span>
+    </div>
+
+    <div id="updateActions">
+      <button class="update-btn-primary" onclick="startUpdate()">Baixar e instalar</button>
+      <button class="update-btn-secondary" onclick="document.getElementById('updateModal').classList.add('hidden')">Agora não</button>
+    </div>
+
+    <div id="updateReady" class="hidden">
+      <p class="update-ready-msg">✅ Pronto! Reinicie para aplicar.</p>
+      <button class="update-btn-primary" onclick="window.updater.restart()">Reiniciar agora</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.update-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+.update-modal.hidden { display: none; }
+.update-box {
+  background: rgba(10,10,25,0.95);
+  border: 1px solid rgba(122,92,255,0.4);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(122,92,255,0.3);
+  animation: fadeIn 0.3s ease;
+}
+.update-icon { font-size: 36px; margin-bottom: 10px; }
+.update-box h2 { margin: 0 0 8px; font-size: 20px; }
+.update-box #updateVersion { opacity: 0.6; font-size: 13px; margin-bottom: 12px; }
+.update-notes {
+  font-size: 13px;
+  opacity: 0.7;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+  max-height: 80px;
+  overflow-y: auto;
+  text-align: left;
+}
+.update-progress { margin-bottom: 16px; }
+.progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #7a5cff, #5f3bff);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+#progressText { font-size: 12px; opacity: 0.6; }
+#updateActions { display: flex; flex-direction: column; gap: 10px; }
+.update-btn-primary {
+  padding: 11px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7a5cff, #5f3bff);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.update-btn-primary:hover { box-shadow: 0 0 15px rgba(122,92,255,0.5); transform: translateY(-1px); }
+.update-btn-secondary {
+  padding: 9px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.update-btn-secondary:hover { color: white; border-color: rgba(255,255,255,0.3); }
+.update-ready-msg { color: #00e676; margin-bottom: 12px; font-size: 14px; }
+</style>
+
+<audio id="bg-music" autoplay loop>
+  <source src="musicbg.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="click-sound" src="button1.mp3"></audio>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
+
+  music.volume = 0.03;
+
+  const startMusic = () => {
+    music.play().catch(err => {
+          });
+  };
+
+  startMusic();
+
+  document.addEventListener("click", () => {
+    startMusic();
+  });
+});
+</script>
+
+
+<!-- tudo do site -->
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+    const r34 = document.getElementById("easterR34");
+    const img = document.getElementById("r34-img");
+    const sound = document.getElementById("r34-sound");
+
+    let toggled = false;
+
+    const img1 = "https://i.ibb.co/qHb04mr/skyline-padr-o.png";
+    const img2 = "https://i.ibb.co/4wdsprty/skyline-do-brian.png";
+
+    if (!r34 || !img || !sound) return;
+
+    r34.addEventListener("click", () => {
+
+        toggled = !toggled;
+        img.src = toggled ? img2 : img1;
+
+        sound.currentTime = 0;
+        sound.volume = 0.5;
+        sound.play().catch(() => {});
+    });
+
+});
+</script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  const clickSound = document.getElementById("click-sound");
+
+  function playClick() {
+    clickSound.currentTime = 0;
+    clickSound.volume = 0.3;
+    clickSound.play().catch(() => {});
+  }
+
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("a, button, .icon-btn")) {
+      playClick();
+    }
+  });
+
+});
+
+</script>
+
+<audio id="r34-sound">
+    <source src="2f2f-theme.mp3" type="audio/mpeg">
+</audio>
+
+<!-- INTRO -->
+<div class="intro" id="introSplash">
+    <img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png" alt="Intro">
+</div>
+<script>
+  if (typeof window.api !== 'undefined' || typeof window.electronAPI !== 'undefined') {
+    document.getElementById('introSplash').style.display = 'none';
+  }
+</script>
+
+<!-- TRANSIÇÃO -->
+<div class="transition" id="pageTransition"></div>
+
+<!-- NEVE -->
+<div class="snow-container"></div>
+
+<!-- MENU -->
+<header>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <div class="logo">
+        <a href="index.html">
+            <img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
+        </a>
+    </div>
+
+    <div class="menu-toggle">☰</div>
+
+     <div class="right-icons">
+
+  <!-- NOTIFICAÇÃO -->
+  <div class="notification-wrapper">
+    <div class="icon-btn" onclick="toggleNotif()">
+      <i data-lucide="bell"></i>
+      <span class="badge">3</span>
+    </div>
+
+    <div class="notif-box" id="notifBox">
+      <p>Nova atualização disponível</p>
+      <p>Capítulo novo lançado</p>
+    </div>
+  </div>
+
+ <div class="user-area">
+    <a href="registro.html" class="icon-btn">
+        <img id="userAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSI0Ii8+PC9zdmc+" style="width:28px;height:28px;border-radius:50%;object-fit:cover;pointer-events:none;">
+    </a>
+</div>
+
+<a href="faleconosco.html" class="icon-btn">
+        <i data-lucide="message-circle"></i>
+    </a>
+
+       <!-- ⬇️ DOWNLOAD -->
+    <a href="download.html" class="icon-btn">
+        <i data-lucide="download"></i>
+    </a>
+
+   <!-- ⬇️ Update -->
+<a href="#" class="icon-btn" id="update-btn" style="display:none;position:relative;">
+    <i data-lucide="arrow-down-circle"></i>
+    <span class="badge" id="update-badge" style="background:#7a5cff;display:none;">!</span>
+</a>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  lucide.createIcons();
+
+  const isElectron = window.electronAPI?.isElectron === true;
+  const updateBtn  = document.getElementById("update-btn");
+  if (updateBtn) updateBtn.style.display = "none";
+
+  function toggleNotif() {
+    const box = document.getElementById("notifBox");
+    if (box) box.classList.toggle("active");
+  }
+  window.toggleNotif = toggleNotif;
+
+  document.addEventListener("click", function(e) {
+    if (!e.target.closest(".notification-wrapper")) {
+      const box = document.getElementById("notifBox");
+      if (box) box.classList.remove("active");
+    }
+  });
+});
+
+function startUpdate() {
+  const actions = document.getElementById("updateActions");
+  const bar     = document.getElementById("updateProgress");
+  if (actions) actions.classList.add("hidden");
+  if (bar)     bar.classList.remove("hidden");
+  if (window.updater) window.updater.downloadUpdate();
+}
+</script>
+
+    <nav class="menu" id="menu">
+        <div class="highlight"></div>
+        <a href="livro.html">Livros</a>
+        <a href="games.html">Games</a>
+        <a href="comics.html">Comics</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="novidades.html">Novidades</a>
+    </nav>
+
+</header>
+
+<!-- BANNER -->
+<section class="banner">
+    <h1>Bem-vindo à Sagile Studios</h1>
+    <p>Explorando mundos através de histórias</p>
+</section>
+
+<div class="search-area">
+    <input type="text" id="search" placeholder="Pesquisar...">
+</div>
+
+<h2 class="titulo-secao">Obras</h2>
+
+<!-- CARROSSEL -->
+<section class="carrossel">
+
+    <button class="seta esquerda">&#10094;</button>
+
+    <div class="container" id="lista">
+
+        <div class="card" data-nome="Em Meu Destino">
+            <a href="emd.html">
+                <img src="https://i.ibb.co/gZX00HX9/Em-meu-Destino-Remake-Arte-Conceitual-v2.png">
+            </a>
+        </div>
+
+        <div class="card" data-nome="O Desolador do anoitecer">
+            <a href="desolador.html">
+                <img src="https://i.ibb.co/mVqrXCYQ/O-desolador-do-anoitecer-remake-AI.jpg">
+            </a>
+        </div>
+
+        <div class="card" data-nome="Em Meu Destino 2">
+            <a href="emd2.html">
+                <img src="https://i.ibb.co/NgcjksNQ/Em-meu-Destino-2-Cover-Art-IA-Remake-v2.jpg">
+            </a>
+        </div>
+
+        <div class="card" data-nome="Em Meu Destino Trilogia">
+            <a href="emdtrilogia.html">
+                <img src="https://i.ibb.co/C5Brdk0h/In-my-Destiny-Trilogy-Cover-art-V3-Com-m-scara.jpg">
+            </a>
+        </div>
+
+        <div class="card" data-nome="Wayston">
+            <a href="wayston.html">
+                <img src="https://i.ibb.co/YTkc9CMM/Wayston-Capa-AI.png">
+            </a>
+        </div>
+
+        <div class="card" data-nome="Attic Horrors">
+            <a href="attic.html">
+                <img src="https://i.ibb.co/hFRXg1Q4/Attic-Horror-s-Cover-art-IA.jpg">
+            </a>
+        </div>
+
+        <div class="card" data-nome="Kamai SEN">
+            <a href="kamaisen.html">
+                <img src="https://i.ibb.co/bMTcBthr/Kamai-SEN-2026-Cover-art.jpg">
+            </a>
+        </div>
+
+    </div>
+
+    <button class="seta direita">&#10095;</button>
+
+</section>
+
+<!-- SOBRE -->
+<section class="sobre reveal">
+    <h1>O QUE É A SAGILE STUDIOS?</h1>
+    <p>
+          A Sagile studios é uma empresa fundada por Miles Deka no ano de 2025, já havia resquicios de sua criação desde 2020, o projeto da empresa foi andar para frente nesse ano por agora. A Sagile Studios é uma empresa que distribui webcomics, livros e afins para o público alvo, no momento só há um integrante, futuramente haverá mais atualizações do que será a empresa daqui para frente. Inicialmente teve sua marca registrada na webcomic de Miles Deka, denominada: "Kamai SEN" posteriormente, a marca sendo dona também dos livros do dono. No futuro próximo continuará produzindo e publicando livros, webcomic, animações...
+
+<h1>Fundação</h1>
+
+A Fundação ocorreu em 2024, a ideia veio de Miles Deka, então se iniciou-se como um rascunho, a intenção era que a empresa assim como a ideia de hoje, seja um estúdio de animações, HQ's, e livros, dentre outros. As obras são distribuídas em vários formatos, em nosso site é possível ler a webcomic, nós estamos atualizando a cada dia mais, e nos tornando cada vez melhores, se alguma pessoa dar sugestão válida, analisaremos a sugestão e iremos debater sobre o caso.
+
+<h1>Obras</h1>
+
+ As obras de Miles Deka estão disponíveis no site, você pode comprar conosco, ou em nossos parceiros. No total atualmente é apenas seis obras disponíveis no site. Futuramente talvez Miles Deka irá construir mais dessas obras, assim que possível.
+
+<h1>Ideias e projetos</h1>
+
+Temos o enorme desejo de ser uma empresa grande, criar videogames e até trabalhar com filmes, e jogos com captura de movimento. Ainda há muita ideia para mostrar ao público.
+
+<h1>Redes sociais</h1>
+
+Você pode nos seguir no instagram, youtube e dentre outros.
+        </p>
+</section>
+
+<!-- SCRIPTS -->
+<script>
+
+/// ❄️ NEVE
+const container = document.querySelector(".snow-container");
+
+for (let i = 0; i < 50; i++) {
+    const flake = document.createElement("div");
+    flake.classList.add("snowflake");
+    flake.innerHTML = "•";
+
+    flake.style.left = Math.random() * 100 + "vw";
+    flake.style.animationDuration = (5 + Math.random() * 5) + "s";
+    flake.style.fontSize = (5 + Math.random() * 10) + "px";
+
+    container.appendChild(flake);
+}
+
+/// 🎮 CARROSSEL
+const lista = document.getElementById("lista");
+
+document.querySelector(".direita").onclick = () => {
+    lista.scrollBy({ left: 300, behavior: 'smooth' });
+};
+
+document.querySelector(".esquerda").onclick = () => {
+    lista.scrollBy({ left: -300, behavior: 'smooth' });
+};
+
+/// 🎬 TRANSIÇÃO
+const transition = document.querySelector(".transition");
+
+window.addEventListener("load", () => {
+    transition.classList.remove("active");
+});
+
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+
+        const href = this.getAttribute("href");
+
+        if (!href || href.startsWith("http")) return;
+
+        e.preventDefault();
+
+        transition.classList.add("active");
+
+        setTimeout(() => {
+            window.location.href = href;
+        }, 500);
+    });
+});
+
+/// 🔥 SCROLL REVEAL
+function revealOnScroll() {
+    const elements = document.querySelectorAll(".reveal");
+
+    elements.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+            el.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+</script>
+
+<script src="script.js"></script>
+
+<script>
+
+function toggleMenu() {
+
+document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+</section> <!-- fecha SOBRE -->
+
+<!-- 🔥 BANNER AQUI -->
+<section class="banner2">
+    <h1></h1>
+    <p></p>
+</section>
+
+<!-- 🔥 NOVIDADES -->
+<section class="home-news">
+
+    <div class="news-header">
+        <h2>Novidades</h2>
+        <div class="linha-ps"></div>
+        <a href="novidades.html" class="ver-tudo">Ver tudo →</a>
+    </div>
+
+    <div class="news-preview">
+
+        <div class="news-card">
+            <h3>Novo capítulo de Kamai SEN</h3>
+            <p>Capítulo 2 já disponível com novas cenas e desenvolvimento.</p>
+            <span>12 Abril 2026</span>
+        </div>
+
+        <div class="news-card">
+            <h3>Atualização em Em Meu Destino</h3>
+            <p>Nova arte e ajustes na história foram adicionados.</p>
+            <span>10 Abril 2026</span>
+        </div>
+
+        <div class="news-card">
+            <h3>Site atualizado</h3>
+            <p>Melhorias visuais e nova interface AAA implementada.</p>
+            <span>08 Abril 2026</span>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-logo">
+            <img src="https://i.ibb.co/twfczfvc/Sagile-logo-png.png">
+            <p>Sagile Studios © 2026</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="livro.html">Livros</a>
+            <a href="games.html">Games</a>
+            <a href="comics.html">Comics</a>
+            <a href="sobre.html">Sobre</a>
+        </div>
+
+        <div class="footer-social">
+            <p>Redes</p>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+        </div>
+
+<!-- 🔥 EASTER EGG R34 -->
+<div class="easter-r34" id="easterR34">
+    <img id="r34-img" src="https://i.ibb.co/qHb04mr/skyline-padr-o.png" alt="R34 GTR">
+</div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="updater-ui.js"></script>
+</body>
+</html>
+

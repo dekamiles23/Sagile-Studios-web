@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+}
+
+video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.skip-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+
+  padding: 10px 18px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+
+  color: white;
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.skip-btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+}
+</style>
+
+</head>
+
+<body>
+
+<video id="intro" preload="auto">
+  <source src="intro.mp4" type="video/mp4">
+</video>
+
+<button class="skip-btn" onclick="finishSplash()">
+  Pular ▶
+</button>
+
+<script>
+
+const video = document.getElementById("intro");
+let finished = false;
+
+video.addEventListener("loadeddata", () => {
+  video.play().catch(() => {});
+});
+
+video.onended = () => {
+  finishSplash();
+};
+
+function finishSplash() {
+  if (finished) return;
+  finished = true;
+  window.splashAPI.finish();
+}
+</script>
+
+</body>
+</html>
