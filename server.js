@@ -18,29 +18,6 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-/*
-pool.query(`
-  CREATE TABLE IF NOT EXISTS stories (
-    id SERIAL PRIMARY KEY,
-    title TEXT DEFAULT '',
-    content TEXT DEFAULT '',
-    capa TEXT DEFAULT '',
-    classificacao TEXT DEFAULT '',
-    genero TEXT DEFAULT '',
-    capitulos TEXT DEFAULT '[]',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  )
-`).then(() => pool.query(`
-  ALTER TABLE stories
-    ADD COLUMN IF NOT EXISTS title TEXT DEFAULT '',
-    ADD COLUMN IF NOT EXISTS content TEXT DEFAULT '',
-    ADD COLUMN IF NOT EXISTS capa TEXT DEFAULT '',
-    ADD COLUMN IF NOT EXISTS classificacao TEXT DEFAULT '',
-    ADD COLUMN IF NOT EXISTS genero TEXT DEFAULT '',
-    ADD COLUMN IF NOT EXISTS capitulos TEXT DEFAULT '[]'
-`)).then(() => console.log("Tabela pronta")).catch(console.error);
-*/
-
 pool.query(`
   CREATE TABLE IF NOT EXISTS stories (
     id SERIAL PRIMARY KEY,
