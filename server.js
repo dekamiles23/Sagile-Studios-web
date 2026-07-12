@@ -65,16 +65,6 @@ app.get("/health", async (req, res) => {
   }
 });
 
-app.use(express.static(...));
-
-app.get("/robots.txt", (req, res) => {
-    res.type("text/plain");
-    res.send(`User-agent: *
-Allow: /
-
-Sitemap: https://sagile-studios-web.onrender.com/sitemap.xml`);
-});
-
 // depois vem o app.get("*")
 
 // Teste direto do INSERT
