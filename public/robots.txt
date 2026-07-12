@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sagile-studios-web.onrender.com/sitemap.xml
